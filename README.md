@@ -41,7 +41,7 @@ Deploy only `dist/client`, which contains the prerendered page and public assets
 
 ## Design language
 
-Morrow feels calm, editorial, and tactile: a small weather almanac for life outside. Warm landscape artwork, layered forecast sheets, place cards, large weather numerals, and personal everyday copy give the page character while keeping the app's typography and palette.
+Morrow feels calm, editorial, and tactile: a small weather almanac for life outside. A central interactive phone is surrounded by photographic city cards, with layered forecast sheets, large weather numerals, and personal everyday copy. The app’s typography and palette carry across the site.
 
 | Token | Light | Dark |
 | --- | --- | --- |
@@ -53,19 +53,25 @@ Morrow feels calm, editorial, and tactile: a small weather almanac for life outs
 | Rain blue | `#6B929C` | `#90B6C4` |
 
 - **Type:** locally hosted Inter Variable. Medium-weight display type, restrained tracking, and readable body text.
-- **Artwork:** Morrow's recolored Meteocons weather art and Phosphor line icons, alongside two original AI-generated landscape illustrations of a fictional riverside town. Landscapes are locally hosted WebP files. Forecast icons stay tied to the example weather when appearance changes.
-- **Motion:** slow weather drift and soft theme transitions, including an afternoon-to-night landscape crossfade. The sticky appearance switch keeps the transition accessible throughout the page. Reduced-motion preferences disable animation and smooth scrolling.
-- **Layout:** an illustrated hero with a layered forecast, a five-day forecast spread, saved-city postcards, and a coming-soon signoff. The layout stacks on smaller screens.
+- **Artwork:** the app’s bundled Meteocons loops and static fallbacks, recolored using its light/dark palette mappings. City photography is hosted locally, with creator and license details in `public/licenses/Photography.txt`. Forecast condition and day/night remain independent of the site’s appearance.
+- **Motion:** the app’s `MorrowMotion` timings: 1,600 ms appearance change, 800 ms forecast reveal, 320 ms transfer/parallax, and 480 ms card lift. Reversible CSS transitions keep rapid selections responsive. Lottie plays the app’s weather keyframes, pauses offscreen and in inactive tabs, and shows a still under Reduced Motion. Pointer parallax does not intercept scrolling.
+- **Layout:** a central phone with four selectable forecast cards arranged around it on desktop. On smaller screens the phone follows the introduction and the cards scroll horizontally. The selected forecast also drives the five-day spread and supporting measurements below.
 - **Accessibility:** semantic landmarks, a skip link, keyboard focus, labeled appearance control, and decorative artwork hidden from assistive technology.
 
-All forecasts and cities shown on the page are explicitly labeled examples, not live readings. The landscape is a fictional brand illustration, not a depiction of Pittsburgh. The page does not collect emails or imply the app is already available. Replace the coming-soon copy with actual TestFlight or store links when those are ready.
+All weather readings are fictional examples. The demo includes Pittsburgh, Seattle, Santa Fe, and Pittsburgh after dark. The last card reuses the Pittsburgh photo with an illustrative dark tint, not a photograph of nighttime weather. The page does not collect emails or imply the app is already available. Replace the coming-soon copy with actual TestFlight or store links when those are ready.
 
 ## Files and attribution
 
-- `app/page.tsx`: page content and appearance switch.
+- `app/page.tsx`: page content, appearance switch, and controlled city selector.
+- `lib/demo-forecasts.ts`: coherent sample forecasts for the phone and detail spread.
+- `components/weather-glyph.tsx`: app weather playback, static fallbacks, pointer response, and reduced-motion handling.
 - `app/globals.css`: design tokens, responsive layout, motion, and typography.
 - `app/layout.tsx`: page metadata.
-- `public/scenes`, `public/weather`, `public/icons`, and `public/fonts`: locally hosted assets.
-- `public/licenses`: Meteocons, Phosphor, and Inter license notices.
+- `public/cities`, `public/weather`, `public/icons`, and `public/fonts`: locally hosted assets.
+- `public/weather/animated`: the app’s Meteocons JSON keyframes, recolored with `MorrowColors.artworkColor` mappings.
+- `public/scenes`: retained landscape assets from the earlier page design; currently unused.
+- `public/licenses`: Meteocons, Phosphor, Inter, and city photography notices.
+
+Select a city with a pointer, touch, or the radio group’s keyboard controls. A polite status announcement confirms the chosen forecast. City selection never requests location or calls a weather API. Appearance changes preserve the chosen city and forecast day/night flag.
 
 The `.openai/hosting.json` file preserves the original Sites project association. Cloudflare Pages uses the static build and does not require a Sites credential.

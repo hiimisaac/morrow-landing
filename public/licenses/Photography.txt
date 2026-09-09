@@ -1,0 +1,26 @@
+Morrow city photography
+
+These photographs show real places. Forecast values are fictional examples.
+All images were resized and converted to WebP; CSS crops them to their cards.
+The Pittsburgh after-hours card adds an illustrative color treatment; it is not a photograph taken at night.
+
+Pittsburgh skyline from North Shore near PNC Park, August 2025
+Photographer: Dough4872
+Source: https://commons.wikimedia.org/wiki/File:Pittsburgh_skyline_from_North_Shore_near_PNC_Park_August_2025.jpeg
+License: Creative Commons Attribution-ShareAlike 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+The adapted image remains under CC BY-SA 4.0.
+
+Downtown Seattle skyline from W Kinnear Place, August 2022
+Photographer: SounderBruce
+Source: https://commons.wikimedia.org/wiki/File:Downtown_Seattle_skyline_from_W_Kinnear_Place,_Aug_2022.jpg
+License: Creative Commons Attribution-ShareAlike 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+The adapted image remains under CC BY-SA 4.0.
+
+Santa Fe adobe
+Photographer: karol m
+Source: https://commons.wikimedia.org/wiki/File:Santa_Fe_adobe.jpg
+Original: https://www.flickr.com/photos/74227781@N00/18391819
+License: Creative Commons Attribution 2.0
+https://creativecommons.org/licenses/by/2.0/
