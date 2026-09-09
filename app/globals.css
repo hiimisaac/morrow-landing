@@ -192,31 +192,11 @@ h1>span { color:var(--accent); }
 .device-frame { padding:7px; background:#2b2827; border:2px solid #817d78; box-shadow:0 0 0 1px #b6aea5,0 25px 45px #30272229,0 4px 10px #0003; border-radius:47px; }
 .device-screen { height:595px; background:var(--background); border-radius:38px; overflow:hidden; position:relative; transition:background-color var(--theme-duration); }
 .phone-camera { position:absolute; width:79px; height:22px; background:#151312; border-radius:20px; left:50%; top:12px; transform:translateX(-50%); z-index:5; }
-.forecast-panel { position:absolute; inset:0; padding:0 18px 25px; opacity:0; pointer-events:none; transform:translateY(calc(18px * var(--travel-direction))) scale(.985); transition:opacity 320ms cubic-bezier(.65,0,.35,1),transform 800ms cubic-bezier(.215,.61,.355,1); }
-.forecast-panel.is-active { opacity:1; pointer-events:auto; transform:translateY(0) scale(1); z-index:1; }
-.phone-status { display:flex; justify-content:space-between; align-items:center; height:44px; font-size:.75rem; font-weight:600; padding-inline:6px; }
-.phone-status>span:last-child { display:flex; align-items:center; gap:3px; }
-.phone-brand { display:flex; align-items:center; justify-content:space-between; padding-top:6px; }
-.phone-brand>span:first-child { font-size:1.0625rem; font-weight:600; letter-spacing:-.075em; }
-.phone-brand>span:last-child { font-size:.75rem; color:var(--muted); }
-.phone-sky { height:134px; position:relative; margin-inline:-17px; }
-.animated-weather { position:absolute; width:254px; height:254px; left:calc(50% - 127px); top:-62px; transform:translate(var(--look-x,0px),var(--look-y,0px)); transition:transform 320ms cubic-bezier(.215,.61,.355,1); }
-.animated-weather>div,.animated-weather>.weather-mark { position:absolute; inset:0; width:100%; height:100%; }
-.lottie-light,.lottie-dark { opacity:0; transition:opacity var(--theme-duration); pointer-events:none; }
-.animated-weather.animation-ready .weather-still { opacity:0; }
-.animation-ready .lottie-light { opacity:1; }
-.dark .animation-ready .lottie-light { opacity:0; }
-.dark .animation-ready .lottie-dark { opacity:1; }
-.forecast-panel .city-line { gap:12px; }
-.forecast-panel .city-line h2 { font-size:1.0625rem; }
-.forecast-panel .temperature { text-align:center; margin-top:3px; font-size:6.65rem; }
-.forecast-panel .condition { text-align:center; }
-.forecast-panel .daylight { margin:23px 0 15px; }
-.night-outlook { height:68px; display:flex; justify-content:center; align-items:center; gap:7px; color:var(--muted); font-size:.75rem; }
-.night-outlook svg { color:var(--blue); }
-.phone-metrics { display:flex; justify-content:space-between; gap:10px; border-top:1px solid var(--border); padding-top:14px; margin-top:16px; font-size:.75rem; color:var(--muted); }
-.phone-metrics>span { display:flex; align-items:center; gap:6px; }
-.dark .phone-metrics img { filter:brightness(0) invert(.88); }
+.flutter-viewport { position:absolute; inset:38px 0 22px; overflow:hidden; }
+.flutter-app { display:block; width:390px; height:696px; border:0; transform-origin:top left; background:var(--background); }
+.app-loading { position:absolute; inset:0; display:flex; flex-direction:column; gap:16px; align-items:center; justify-content:center; padding:24px; text-align:center; background:var(--background); z-index:3; }
+.app-loading .wordmark { font-size:2rem; }
+.app-loading p { font-size:.875rem; color:var(--muted); }
 .phone-home { position:absolute; width:96px; height:4px; border-radius:4px; background:var(--foreground); bottom:10px; left:calc(50% - 48px); z-index:5; transition:background-color var(--theme-duration); }
 .city-rail { position:absolute; inset:405px -20px auto; display:grid; width:auto; grid-template-columns:1fr 1fr 336px 1fr 1fr; gap:14px; align-items:start; }
 .city-pick { position:relative; display:block; min-width:0; cursor:pointer; border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--soft); color:var(--foreground); transform:translateY(0); transition:transform 480ms cubic-bezier(.215,.61,.355,1),background-color var(--theme-duration),border-color 320ms,box-shadow 320ms; }
@@ -252,15 +232,6 @@ h1>span { color:var(--accent); }
   .interactive-hero { display:grid; grid-template-columns:1fr 1fr; min-height:0; padding:24px 0 25px; gap:25px; } .hero-message { width:auto; padding-top:10px; } .hero-message h1 { font-size:3.1rem; } .hero-message .eyebrow { max-width:none; } .hero-invitation { display:none; } .phone-position { position:relative; width:310px; top:auto; left:auto; transform:none; justify-self:end; grid-column:2; grid-row:1; } .city-rail { position:relative; inset:auto; grid-column:1/-1; display:flex; gap:15px; overflow-x:auto; overflow-y:hidden; width:calc(100% + 24px); margin:0 -12px; padding:19px 12px 17px; scroll-snap-type:x proximity; scrollbar-width:thin; } .city-pick { flex:1 0 185px; max-width:245px; margin:0; scroll-snap-align:start; } .city-photo { height:140px; } .city-card-heading { flex-wrap:nowrap; font-size:1.125rem; } .city-card-heading strong { font-size:1.8rem; } .city-card-action>span { max-width:none; } .demo-caption { position:static; grid-column:1/-1; margin-top:-14px; } .hero-message .explore-link { margin-top:24px; }
 }
 @media(max-width:680px) {
-  .interactive-hero { grid-template-columns:1fr; gap:31px; padding-top:25px; } .hero-message { text-align:center; } .hero-message .eyebrow { justify-content:center; } .hero-message h1 { font-size:clamp(2.6rem,9.4vw,3.8rem); } .hero-message h1 br { display:block!important; } .hero-message h1>span::before { content:none; } .hero-message>p:not(.eyebrow) { font-size:1rem; margin-top:17px; } .hero-message .release-note { font-size:.875rem!important; } .phone-position { width:310px; max-width:100%; grid-column:1; grid-row:2; justify-self:center; } .device-screen { height:595px; } .city-rail { margin-top:-3px; } .city-pick { flex:0 0 185px; } .city-pick.is-selected { transform:translateY(-7px); } .demo-caption { margin-top:-24px; } .forecast-panel .city-line { gap:12px; } .forecast-panel .city-line h2 { font-size:1.0625rem; } .forecast-panel .city-line>span { font-size:.875rem; }
+  .interactive-hero { grid-template-columns:1fr; gap:31px; padding-top:25px; } .hero-message { text-align:center; } .hero-message .eyebrow { justify-content:center; } .hero-message h1 { font-size:clamp(2.6rem,9.4vw,3.8rem); } .hero-message h1 br { display:block!important; } .hero-message h1>span::before { content:none; } .hero-message>p:not(.eyebrow) { font-size:1rem; margin-top:17px; } .hero-message .release-note { font-size:.875rem!important; } .phone-position { width:310px; max-width:100%; grid-column:1; grid-row:2; justify-self:center; } .device-screen { height:595px; } .city-rail { margin-top:-3px; } .city-pick { flex:0 0 185px; } .city-pick.is-selected { transform:translateY(-7px); } .demo-caption { margin-top:-24px; }
 }
-@media(max-width:360px) { .phone-position { width:294px; } .forecast-panel { padding-inline:14px; } .hero-message h1 { font-size:2.6rem; } .forecast-panel .city-line { gap:10px; } }
-@media(prefers-reduced-motion:reduce) { .animated-weather { transform:none!important; } .forecast-panel { transform:none!important; } }
-.phone-sky { height:128px; overflow:hidden; }
-.animated-weather.weather-clear-day,.animated-weather.weather-clear-night { width:170px; height:170px; left:calc(50% - 85px); top:-20px; }
-.forecast-panel .temperature { font-size:6rem; line-height:1.08; }
-.forecast-panel .daylight { margin:20px 0 12px; }
-.forecast-panel .daylight svg { display:block; height:26px; }
-.forecast-panel .hourly-row { padding-top:11px; }
-.forecast-panel .hour .weather-mark { width:42px; height:42px; }
-.forecast-panel .phone-metrics { margin-top:13px; padding-top:12px; }
+@media(max-width:360px) { .phone-position { width:294px; }  .hero-message h1 { font-size:2.6rem; }  }

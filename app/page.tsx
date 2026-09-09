@@ -1,58 +1,17 @@
 'use client';
 
-import { useState, type CSSProperties } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, Moon, Sun, Signal, BatteryFull, Wifi, Check } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Moon, Sun, Check } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { WeatherMark, AnimatedWeather } from '@/components/weather-glyph';
-import { demoForecasts, type DemoForecast } from '@/lib/demo-forecasts';
+import { WeatherMark } from '@/components/weather-glyph';
+import { FlutterDemo } from '@/components/flutter-demo';
+import { demoForecasts } from '@/lib/demo-forecasts';
 
 const places = demoForecasts.slice(0, 3).map(forecast => ({
   city: forecast.city, state: forecast.state, note: forecast.caption, temp: forecast.temperature,
   kind: forecast.kind, condition: forecast.condition, high: forecast.high, low: forecast.low,
 }));
-
-function Daylight({ forecast }: { forecast: DemoForecast }) {
-  if (!forecast.isDay) return <div className="night-outlook"><Moon size={16} aria-hidden="true" /><span>Sunrise at {forecast.sunrise}</span></div>;
-  const toMinutes = (clock: string) => {
-    const [hour, minute] = clock.replace(/ [AP]M/, '').split(':').map(Number);
-    return (hour % 12 + (clock.endsWith('PM') ? 12 : 0)) * 60 + minute;
-  };
-  const now = toMinutes(`${forecast.clock} ${forecast.id === 'pittsburgh' ? 'PM' : 'AM'}`);
-  const progress = Math.max(0, Math.min(1, (now - toMinutes(forecast.sunrise)) / (toMinutes(forecast.sunset) - toMinutes(forecast.sunrise))));
-  const x = 2 + 296 * progress;
-  const y = 36 - 120 * progress + 120 * progress * progress;
-  return <div className="daylight" aria-label={`Example daylight: sunrise ${forecast.sunrise}, sunset ${forecast.sunset}`}>
-    <svg viewBox="0 0 300 40" aria-hidden="true">
-      <path className="daylight-track" d="M2 36 Q150 -24 298 36" />
-      <path className="daylight-progress" d={`M2 36 Q${2 + 148 * progress} ${36 - 60 * progress} ${x} ${y}`} />
-      <circle className="daylight-halo" cx={x} cy={y} r="9" /><circle className="daylight-point" cx={x} cy={y} r="4" />
-    </svg>
-    <div className="daylight-labels"><span>{forecast.sunrise}</span><span>{forecast.sunset}</span></div>
-  </div>;
-}
-
-function ForecastPhone({ selectedIndex }: { selectedIndex: number }) {
-  return <div className="phone-position" id="forecast-demo">
-    <div className="device-frame">
-      <div className="device-screen">
-        <div className="phone-camera" aria-hidden="true" />
-        {demoForecasts.map((forecast, index) => <section key={forecast.id} className={`forecast-panel${index === selectedIndex ? ' is-active' : ''}`} aria-label={`${forecast.city} ${forecast.isDay ? 'daytime' : 'after-dark'} example forecast`} aria-hidden={index !== selectedIndex} inert={index !== selectedIndex} style={{ '--travel-direction': index < selectedIndex ? -1 : 1 } as CSSProperties}>
-          <div className="phone-status" aria-hidden="true"><span>{forecast.clock}</span><span><Signal size={13} /><Wifi size={13} /><BatteryFull size={19} /></span></div>
-          <div className="phone-brand"><span>morrow<span className="coral">.</span></span><span>Example · °F</span></div>
-          <div className="phone-sky"><AnimatedWeather kind={forecast.kind} active={index === selectedIndex} /></div>
-          <div className="city-line"><span className="low">↓ {forecast.low}°</span><h2>{forecast.city}</h2><span className="high">↑ {forecast.high}°</span></div>
-          <div className="temperature">{forecast.temperature}<span>°</span></div>
-          <p className="condition">{forecast.condition}</p>
-          <Daylight forecast={forecast} />
-          <div className="hourly-row">{forecast.hours.map(hour => <div className="hour" key={hour.time}><span>{hour.time}</span><WeatherMark kind={hour.kind} /><strong>{hour.temperature}°</strong></div>)}</div>
-          <div className="phone-metrics"><span><img src="/icons/wind.svg" width="16" height="16" alt="" />{forecast.wind} mph</span><span><img src="/icons/drop.svg" width="16" height="16" alt="" />{forecast.humidity}% humidity</span></div>
-        </section>)}
-        <div className="phone-home" aria-hidden="true" />
-      </div>
-    </div>
-  </div>;
-}
 
 export default function Home() {
   const [dark, setDark] = useState(false);
@@ -91,9 +50,9 @@ export default function Home() {
             <span className="invitation-mark" aria-hidden="true">✳</span>
             <h2>Go on.<br />Change the<br /><em>scenery.</em></h2>
             <p>Pick a place below.<br />We’ll bring the weather.</p>
-            <span className="demo-label">A few imaginary forecasts,<br />a little of the real Morrow.</span>
+            <span className="demo-label">The real Morrow app.<br />A few imaginary forecasts.</span>
           </aside>
-          <ForecastPhone selectedIndex={selectedIndex} />
+          <FlutterDemo scenario={forecast.id} dark={dark} onChange={state => { const index = demoForecasts.findIndex(item => item.id === state.scenario); if (index >= 0) setSelectedIndex(index); setDark(state.dark); }} />
           <RadioGroup className="city-rail" value={forecast.id} onValueChange={value => { const index = demoForecasts.findIndex(item => item.id === value); if (index >= 0) setSelectedIndex(index); }} aria-label="Choose an example forecast">
             {demoForecasts.map((item, index) => <label className={`city-pick city-pick-${index}${index === selectedIndex ? ' is-selected' : ''}${!item.isDay ? ' after-hours-card' : ''}`} key={item.id}>
               <RadioGroupItem className="city-radio" value={item.id} aria-label={`${item.city}${item.isDay ? '' : ' after dark'}, ${item.temperature} degrees, ${item.condition}`} aria-controls="forecast-demo" />
@@ -101,7 +60,7 @@ export default function Home() {
               <span className="city-card-content"><span className="city-card-heading"><span>{item.city}</span><strong>{item.temperature}°</strong></span><span className="city-card-condition">{item.condition}</span><span className="city-card-action"><span>{index === selectedIndex ? 'In the forecast' : 'Take a look'}</span>{index === selectedIndex ? <Check size={15} aria-hidden="true" /> : <ArrowUpRight size={15} aria-hidden="true" />}</span></span>
             </label>)}
           </RadioGroup>
-          <p className="demo-caption">Your little window to the weather.<span>Choose a card to try it.</span></p>
+          <p className="demo-caption">Your little window to the weather.<span>Pick a city. Scroll the app. Make yourself at home.</span></p>
           <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">{forecast.city}, {forecast.isDay ? 'daytime' : 'after dark'}: {forecast.temperature} degrees Fahrenheit, {forecast.condition}. Example forecast selected.</p>
         </section>
 
