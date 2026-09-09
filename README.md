@@ -41,7 +41,7 @@ Deploy only `dist/client`, which contains the prerendered page and public assets
 
 ## Design language
 
-Morrow feels calm, editorial, and tactile. It uses generous whitespace, large weather numerals, quiet supporting labels, and illustration instead of dense cards or dashboard chrome.
+Morrow feels calm, editorial, and tactile: a small weather almanac for life outside. Warm landscape artwork, layered forecast sheets, place cards, large weather numerals, and personal everyday copy give the page character while keeping the app's typography and palette.
 
 | Token | Light | Dark |
 | --- | --- | --- |
@@ -53,19 +53,19 @@ Morrow feels calm, editorial, and tactile. It uses generous whitespace, large we
 | Rain blue | `#6B929C` | `#90B6C4` |
 
 - **Type:** locally hosted Inter Variable. Medium-weight display type, restrained tracking, and readable body text.
-- **Artwork:** Morrow's recolored Meteocons weather art and Phosphor line icons. Artwork stays tied to the forecast when appearance changes.
-- **Motion:** slow weather drift and soft theme transitions. Reduced-motion preferences disable animation and smooth scrolling.
-- **Layout:** a spacious editorial hero, an illustrative forecast, three concise feature stories, and a coming-soon signoff. The layout stacks on smaller screens.
+- **Artwork:** Morrow's recolored Meteocons weather art and Phosphor line icons, alongside two original AI-generated landscape illustrations of a fictional riverside town. Landscapes are locally hosted WebP files. Forecast icons stay tied to the example weather when appearance changes.
+- **Motion:** slow weather drift and soft theme transitions, including an afternoon-to-night landscape crossfade. The sticky appearance switch keeps the transition accessible throughout the page. Reduced-motion preferences disable animation and smooth scrolling.
+- **Layout:** an illustrated hero with a layered forecast, a five-day forecast spread, saved-city postcards, and a coming-soon signoff. The layout stacks on smaller screens.
 - **Accessibility:** semantic landmarks, a skip link, keyboard focus, labeled appearance control, and decorative artwork hidden from assistive technology.
 
-The Pittsburgh weather shown on the page is an explicitly labeled example, not a live forecast. The page does not collect emails or imply the app is already available. Replace the coming-soon copy with actual TestFlight or store links when those are ready.
+All forecasts and cities shown on the page are explicitly labeled examples, not live readings. The landscape is a fictional brand illustration, not a depiction of Pittsburgh. The page does not collect emails or imply the app is already available. Replace the coming-soon copy with actual TestFlight or store links when those are ready.
 
 ## Files and attribution
 
 - `app/page.tsx`: page content and appearance switch.
 - `app/globals.css`: design tokens, responsive layout, motion, and typography.
 - `app/layout.tsx`: page metadata.
-- `public/weather`, `public/icons`, and `public/fonts`: locally hosted assets.
+- `public/scenes`, `public/weather`, `public/icons`, and `public/fonts`: locally hosted assets.
 - `public/licenses`: Meteocons, Phosphor, and Inter license notices.
 
 The `.openai/hosting.json` file preserves the original Sites project association. Cloudflare Pages uses the static build and does not require a Sites credential.
