@@ -2,7 +2,8 @@
 
 Captured from the static production export with both launch destinations unset.
 The three feature screenshots share aligned, equally sized windows, and the hero
-shows the app without a floating summary blurb.
+shows just the phone with a soft shadow, without a backdrop, decorative labels,
+or summary blurb.
 
 - [Desktop — 1440px wide](desktop.webp)
 - [Mobile — 390px wide](mobile.webp)

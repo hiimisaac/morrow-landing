@@ -125,10 +125,6 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
           </div>
           <figure className="hero-product">
             <div className="product-stage">
-              <div className="stage-caption" aria-hidden="true">
-                <span>A CLEARER PICTURE</span>
-                <span>{dark ? '47°' : '52°'} / 40.44° N</span>
-              </div>
               <ProductScreen dark={dark} />
             </div>
             <figcaption>

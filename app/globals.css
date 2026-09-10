@@ -339,34 +339,10 @@ h1 span {
   min-width: 0;
 }
 .product-stage {
-  position: relative;
-  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 637px;
-  border-radius: 18px;
-  background:
-    radial-gradient(ellipse at 75% 18%, #f6d6bd88, transparent 65%),
-    linear-gradient(135deg, #eeeae3, #e2e3dc);
-}
-.dark .product-stage {
-  background:
-    radial-gradient(ellipse at 70% 10%, #69524655, transparent 65%),
-    linear-gradient(135deg, #37313a, #262934);
-}
-.stage-caption {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  inset: 22px 24px auto;
-  color: #7d756a;
-  font-size: 0.625rem;
-  font-weight: 550;
-  letter-spacing: 0.1em;
-}
-.dark .stage-caption {
-  color: #c4b9b0;
 }
 .phone-device {
   position: relative;
@@ -378,8 +354,8 @@ h1 span {
   box-shadow:
     0 0 0 1px #9e9790,
     inset 0 0 0 2px #77716b,
-    18px 25px 36px -15px #302d2b60,
-    2px 6px 10px #302d2b35;
+    12px 24px 42px -14px #302d2b35,
+    2px 6px 12px #302d2b20;
   transform: rotate(-4deg);
 }
 .phone-device::before {
@@ -919,13 +895,6 @@ h2 {
   .phone-screen {
     border-radius: 30px;
   }
-  .stage-caption {
-    font-size: 0.5625rem;
-    inset: 17px 16px auto;
-  }
-  .stage-caption span:last-child {
-    display: none;
-  }
   .section-heading {
     align-items: flex-start;
   }
@@ -1043,7 +1012,6 @@ h2 {
   }
   .product-stage {
     min-height: 517px;
-    border-radius: 13px;
   }
   .phone-device {
     width: 227px;
