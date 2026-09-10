@@ -39,26 +39,49 @@ npx tsc --noEmit
 
 Deploy only `dist/client`, which contains the prerendered page and public assets. The other directories under `dist` contain build intermediates.
 
-## Design language
+## Landing page and launch configuration
 
-The landing page extends the app's quietly illustrated weather journal: one continuous paper surface, medium-weight Inter, fine dividers, and a generous view of the actual weather screen. The app's forecast is the visual center of the composition.
+The hero uses an optimized screenshot of the actual bundled Morrow app inside lightweight device chrome. Three product panels show the hourly forecast, five-day forecast, and saved places. The real interactive Flutter release stays below the product introduction and only loads after **Start exploring**, keeping its JavaScript and CanvasKit off the initial page load. The existing appearance switch and sample-location controls remain connected to the app.
 
-| Token              | Light     | Dark      |
-| ------------------ | --------- | --------- |
-| Paper / background | `#F8F3EF` | `#211F25` |
-| Ink / foreground   | `#392F2D` | `#F3ECE6` |
-| Muted text         | `#766A66` | `#B9ADA8` |
-| Coral accent       | `#FF4A22` | `#FF815F` |
-| Dividers           | `#DCD2CC` | `#494148` |
+On mobile, the hero copy, conversion controls, and phone appear before all location controls. Feature panels form a swipeable, keyboard-scrollable gallery on narrow screens to keep the page compact. In the demo section, the app also appears before its place selector. Screens have descriptive alternatives, form fields have labels, radios and the appearance switch are keyboard-operable, and page motion respects Reduced Motion.
 
-- **Type:** locally hosted Inter Variable. Display text and measurements use medium weight; city names and feature labels use semibold. Body text is 16px. Coral is reserved for small actions, selection marks, and weather artwork.
-- **Composition:** the real app sits between a short introduction with a city photograph and a location list. The app shares the page's paper color, with fine vertical rules separating the interactive surface. It renders at the available viewport width, keeping its own responsive layout and text sizing. The footer and feature rows use the same dividers and spacing rhythm.
-- **Artwork:** the app uses its actual Flame renderer and Meteocons artwork. Supporting controls use the same Phosphor icons. A single city photograph crossfades when the selected place changes; it remains an honest location photograph during the after-dark sample. Creator and license details are in `public/licenses/Photography.txt`.
-- **Motion:** the app owns all forecast and scrolling animation. The surrounding paper changes appearance over 1,600 ms with a brief dawn/dusk light treatment; photographs crossfade over 800 ms. Presses briefly reduce opacity. Reduced Motion makes these changes immediate.
-- **Responsive behavior:** the three-column desktop composition becomes two columns on tablets. On small screens, the introduction and a compact two-column location selector precede the app; the city photograph follows it. The app fills its available width without CSS scaling.
-- **Accessibility:** semantic landmarks, a skip link, visible keyboard focus, a labeled appearance switch, and a keyboard-operable radio group. Sample forecasts are labeled beside the interactive app.
+### Enable the waitlist or TestFlight
 
-All weather readings are fictional examples. The demo includes Pittsburgh, Seattle, Santa Fe, and Pittsburgh after dark. The page does not collect emails or imply the app is already available. Replace the coming-soon copy with actual TestFlight or store links when those are ready.
+No waitlist endpoint or TestFlight URL exists yet. Until one is configured, the page shows **Signups open soon**, disables email collection, and provides a working **Try Morrow** action. It does not save email locally, claim a successful signup, or send email to an invented backend.
+
+Copy `.env.example` to `.env.local` for local preview, or set the following public build-time variables in Cloudflare Pages (set Preview and Production separately as needed), then rebuild:
+
+| Variable                      | Behavior                                                                                                                                                |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_TESTFLIGHT_URL`  | A real `https://testflight.apple.com/join/...` invitation. Enables **Join the iPhone beta** in both conversion areas. Takes priority over the waitlist. |
+| `NEXT_PUBLIC_WAITLIST_ACTION` | A real HTTPS form-provider endpoint. Enables both email forms and **Join the waitlist**.                                                                |
+
+The waitlist uses a native HTML `POST` with `email` and `source=morrow-landing`, navigating to the provider's own confirmation/error page. Choose a provider that accepts those fields and browser form submissions; a JSON-only API will need an adapter outside this static site. Configure confirmation, consent/privacy copy, abuse protection, and any double opt-in at that provider before collecting real addresses. No CORS integration, API key, new runtime, or database is needed in this repository. Never use private credentials in `NEXT_PUBLIC_` values.
+
+Blank, malformed, non-HTTPS, or credential-bearing URLs fall back to the pre-launch state. TestFlight URLs must be actual invitation paths on `testflight.apple.com`. A new build is required after changing these variables; this is still a static Pages export.
+
+### Preview and checks
+
+```sh
+npm ci
+npm run dev
+# Open the local URL printed by Vinext.
+```
+
+```sh
+npm test
+npm run lint
+npx tsc --noEmit
+npm run build
+# Optional: serve the production export without a Worker.
+python3 -m http.server 4173 --directory dist/client
+```
+
+Check the hero and lower conversion area in three configurations: no variables, a real waitlist endpoint, and a real TestFlight invitation. A configured form should use native email validation and reach the provider's real confirmation page. The demo can be opened separately from the hero and supports all four sample locations. Check narrow mobile, tablet, desktop, keyboard focus, and light/dark appearance.
+
+### Visual assets
+
+`public/screenshots` contains WebP captures of the real app release, not a React recreation. Source revision and capture details live in `public/screenshots/README.md`. Refresh these when the app's appearance changes. App artwork, fonts, local weather icons, and existing attribution files are retained. All weather readings shown are fictional examples.
 
 ## The real app demo
 
@@ -78,19 +101,16 @@ Use the Flutter version recorded in `public/app-demo/flutter-version.json`. The 
 
 ## Files and attribution
 
-- `app/page.tsx`: page content, appearance switch, and controlled city selector.
-- `lib/demo-forecasts.ts`: location-selector labels and sample temperatures. The app’s demo repository owns the forecasts inside the app.
-- `components/flutter-demo.tsx`: embeds the real app and connects city/appearance controls with a same-origin message bridge.
-- `components/weather-glyph.tsx`: static weather artwork for the surrounding marketing page.
-- `public/app-demo`: the compiled Flutter release, with source commit and file hashes in `provenance.json`.
-- `scripts/update-app-demo.sh`: rebuilds that release from the app repository.
-- `app/globals.css`: design tokens, responsive layout, motion, and typography.
+- `app/page.tsx`: resolves public launch destinations at build time.
+- `components/morrow-landing.tsx`: responsive page, appearance state, and sample selector.
+- `components/beta-signup.tsx`: shared hero/footer conversion UI and native POST form.
+- `lib/beta-config.ts`: destination validation; covered by `tests/beta-config.test.mjs`.
+- `components/product-screen.tsx`: device chrome around the real app capture.
+- `components/flutter-demo.tsx`: unchanged same-origin app message bridge, loading, and retry UI.
+- `public/screenshots`: product captures; `public/app-demo`: compiled Flutter release and provenance.
+- `scripts/update-app-demo.sh`: rebuilds the demo from the app repository.
+- `app/globals.css`: themes, typography, device frame, responsive layout, and reduced motion.
 - `app/layout.tsx`: page metadata.
-- `public/cities`, `public/weather`, `public/icons`, and `public/fonts`: locally hosted assets.
-- `public/weather/animated`: retained assets from the previous web imitation; the phone now loads its artwork directly from the Flutter bundle.
-- `public/scenes`: retained landscape assets from the earlier page design; currently unused.
-- `public/licenses`: Meteocons, Phosphor, Inter, and city photography notices.
+- `public/licenses`: existing artwork, font, icon, and photography notices.
 
-Select a city with a pointer, touch, or the radio group’s keyboard controls. The radio group exposes the selected forecast to assistive technology. City selection never requests location or calls a weather API. Appearance changes preserve the chosen city and forecast day/night flag.
-
-The `.openai/hosting.json` file preserves the original Sites project association. Cloudflare Pages uses the static build and does not require a Sites credential.
+The `.openai/hosting.json` file preserves the original Sites project association. Cloudflare Pages uses the static build and does not require a Sites credential. The build settings, production branch, static output directory, and custom domain setup are unchanged.

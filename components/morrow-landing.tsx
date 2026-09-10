@@ -1,0 +1,360 @@
+'use client';
+
+/* oxlint-disable next/no-img-element -- Screenshots are pre-optimized WebP assets in a static export. */
+/* oxlint-disable next/no-html-link-for-pages -- Footer destinations are static license files. */
+/* oxlint-disable jsx-a11y/no-noninteractive-tabindex -- The overflow gallery must support native keyboard scrolling. */
+
+import { useState } from 'react';
+import { ArrowDown, ArrowRight, Moon, Play, Sun } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { Button } from '@/components/ui/button';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { WeatherMark } from '@/components/weather-glyph';
+import { FlutterDemo } from '@/components/flutter-demo';
+import { BetaSignup } from '@/components/beta-signup';
+import { ProductScreen } from '@/components/product-screen';
+import { demoForecasts } from '@/lib/demo-forecasts';
+import type { BetaConfig } from '@/lib/beta-config';
+
+const features = [
+  {
+    number: '01',
+    label: 'HOUR BY HOUR',
+    title: 'Find your window.',
+    description:
+      'The morning walk. The long way home. See how the next 24 hours unfold, in one clear view.',
+    image: 'hourly-light',
+    alt: 'Morrow’s hourly forecast shows the afternoon warming from 52 to 59 degrees, with sunset at 7:18 PM.',
+    width: 732,
+    height: 464,
+  },
+  {
+    number: '02',
+    label: 'THE DAYS AHEAD',
+    title: 'A little more foresight.',
+    description:
+      'Five days or ten. Highs, lows, and everything in between. Open any day to get closer.',
+    image: 'daily-light',
+    alt: 'The app’s five-day forecast pairs each day’s weather icon with its low and high temperatures.',
+    width: 732,
+    height: 858,
+  },
+  {
+    number: '03',
+    label: 'YOUR PLACES',
+    title: 'Keep your world close.',
+    description:
+      'Home, away, and somewhere you’d rather be. Save your places and take their last forecast offline.',
+    image: 'places-light',
+    alt: 'Morrow’s saved places, showing the sample forecasts for Pittsburgh, Seattle, and Santa Fe.',
+    width: 732,
+    height: 1012,
+  },
+];
+
+export function MorrowLanding({ beta }: { beta: BetaConfig }) {
+  const [dark, setDark] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [demoStarted, setDemoStarted] = useState(false);
+  const forecast = demoForecasts[selectedIndex];
+  const signupReady = Boolean(beta.testFlightUrl || beta.waitlistAction);
+
+  return (
+    <div className={`morrow-site${dark ? ' dark' : ''}`}>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <header className="site-header shell">
+        <a href="#main" className="wordmark" aria-label="Morrow home">
+          <img src="/favicon.svg" width="34" height="34" alt="" />
+          Morrow
+        </a>
+        <nav className="header-nav" aria-label="Main navigation">
+          <a href="#the-details">The outlook</a>
+          <a href="#try-morrow">Try Morrow</a>
+        </nav>
+        <div className="header-actions">
+          <div className="appearance-control">
+            <Sun size={16} aria-hidden="true" />
+            <Switch
+              className="appearance-switch"
+              checked={dark}
+              onCheckedChange={setDark}
+              aria-label="Dark appearance"
+            />
+            <Moon size={16} aria-hidden="true" />
+          </div>
+          <a href="#early-access" className="header-cta">
+            {signupReady ? 'Get early access' : 'Beta coming soon'}
+            <ArrowRight size={15} aria-hidden="true" />
+          </a>
+        </div>
+      </header>
+
+      <main id="main">
+        <section className="hero shell" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              <span className="status-dot" /> A fresh outlook on weather
+            </p>
+            <h1 id="hero-title">
+              Your day.
+              <br />
+              <span>Beautifully clear.</span>
+            </h1>
+            <p className="hero-description">
+              Know the hour to head out. See the week taking shape. Morrow puts
+              your whole forecast in perspective, with a little warmth along the
+              way.
+            </p>
+            <div className="hero-conversion">
+              <BetaSignup beta={beta} id="hero-beta" />
+              <a
+                className={signupReady ? 'text-link' : 'primary-cta'}
+                href="#try-morrow"
+              >
+                <Play size={16} aria-hidden="true" /> Try Morrow
+                <span className="cta-aside">Right here in your browser</span>
+                <ArrowRight size={17} aria-hidden="true" />
+              </a>
+            </div>
+            <div className="hero-footnote">
+              <span>Made for your everyday.</span>
+              <span>Starting with iPhone.</span>
+            </div>
+          </div>
+          <figure className="hero-product">
+            <div className="product-stage">
+              <div className="stage-caption" aria-hidden="true">
+                <span>A CLEARER PICTURE</span>
+                <span>{dark ? '47°' : '52°'} / 40.44° N</span>
+              </div>
+              <ProductScreen dark={dark} />
+              <div className="product-tag" aria-hidden="true">
+                <WeatherMark
+                  kind={dark ? 'clear-night' : 'partly-cloudy-day'}
+                />
+                <div>
+                  <strong>
+                    {dark
+                      ? 'Good evening, Pittsburgh.'
+                      : 'A good day to get out.'}
+                  </strong>
+                  <span>
+                    {dark
+                      ? 'The day winds down. Your outlook stays clear.'
+                      : 'Your next few hours, already in view.'}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <figcaption>
+              Actual Morrow app <span>·</span> Sample forecast
+            </figcaption>
+          </figure>
+        </section>
+
+        <section
+          className="product-proof shell"
+          id="the-details"
+          aria-labelledby="details-title"
+        >
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">The details make the day</p>
+              <h2 id="details-title">
+                A quick glance.
+                <br />A complete picture.
+              </h2>
+            </div>
+            <p>
+              From a jacket decision to a weekend away.
+              <br />
+              Beautifully readable. Reassuringly useful.
+            </p>
+          </div>
+          <p className="feature-scroll-hint">
+            Swipe for the full outlook{' '}
+            <ArrowRight size={14} aria-hidden="true" />
+          </p>
+          <section
+            className="feature-grid"
+            tabIndex={0}
+            aria-label="Morrow features"
+          >
+            {features.map((feature) => (
+              <article
+                className={`feature-panel feature-${feature.number}`}
+                key={feature.number}
+              >
+                <div className="feature-copy">
+                  <p className="feature-label">
+                    <span>{feature.number}</span>
+                    {feature.label}
+                  </p>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </div>
+                <div className="feature-screen">
+                  <img
+                    src={`/screenshots/${feature.image}.webp`}
+                    width={feature.width}
+                    height={feature.height}
+                    alt={feature.alt}
+                    loading="lazy"
+                  />
+                </div>
+                {feature.number === '01' && (
+                  <p className="feature-annotation">
+                    <span className="status-dot" /> Your afternoon, at a glance.
+                  </p>
+                )}
+              </article>
+            ))}
+          </section>
+          <p className="proof-note">
+            Screens from the actual app. Forecasts shown are examples.
+          </p>
+        </section>
+
+        <section
+          className="demo-section"
+          id="try-morrow"
+          aria-labelledby="demo-title"
+        >
+          <div className="demo-layout shell">
+            <div className="demo-copy">
+              <p className="eyebrow">Take a look around</p>
+              <h2 id="demo-title">
+                A change of scenery.
+                <br />
+                Same clear outlook.
+              </h2>
+              <p>
+                Rain in Seattle. Sunshine in Santa Fe. Spend a moment with
+                Morrow and see how it feels.
+              </p>
+              <RadioGroup
+                className="place-list"
+                value={forecast.id}
+                onValueChange={(value) => {
+                  const index = demoForecasts.findIndex(
+                    (item) => item.id === value,
+                  );
+                  if (index >= 0) setSelectedIndex(index);
+                }}
+                aria-label="Choose a sample forecast"
+              >
+                {demoForecasts.map((item, index) => (
+                  <label
+                    className={`place-option${selectedIndex === index ? ' is-selected' : ''}`}
+                    key={item.id}
+                  >
+                    <RadioGroupItem
+                      className="place-radio"
+                      value={item.id}
+                      aria-label={`${item.city}${item.isDay ? '' : ' after dark'}`}
+                      aria-controls="forecast-demo"
+                    />
+                    <span className="place-identity">
+                      <span className="place-name">{item.city}</span>
+                      <span className="place-condition">
+                        {item.isDay ? item.condition : 'After dark'}
+                      </span>
+                    </span>
+                    <WeatherMark kind={item.kind} />
+                    <span className="place-temperature">
+                      {item.temperature}°
+                    </span>
+                  </label>
+                ))}
+              </RadioGroup>
+              <p className="demo-help">
+                Sample forecasts. No location access needed.
+                <br />
+                Try settings, change units, or explore a day.
+              </p>
+            </div>
+            <div className="demo-product">
+              {demoStarted ? (
+                <FlutterDemo
+                  scenario={forecast.id}
+                  dark={dark}
+                  onChange={(state) => {
+                    const index = demoForecasts.findIndex(
+                      (item) => item.id === state.scenario,
+                    );
+                    if (index >= 0) setSelectedIndex(index);
+                    setDark(state.dark);
+                  }}
+                />
+              ) : (
+                <div className="demo-poster" id="forecast-demo">
+                  <img
+                    src={`/screenshots/current-${dark ? 'dark' : 'light'}.webp`}
+                    width="780"
+                    height="1560"
+                    alt="Preview of the Morrow app. Start the interactive demo to explore a sample forecast."
+                    loading="lazy"
+                  />
+                  <div className="demo-launch">
+                    <Button
+                      className="primary-cta"
+                      onClick={() => setDemoStarted(true)}
+                    >
+                      <Play size={18} aria-hidden="true" /> Start exploring{' '}
+                      <ArrowRight size={18} aria-hidden="true" />
+                    </Button>
+                    <p>The real app. A few places to play.</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="release-section shell"
+          id="early-access"
+          aria-labelledby="release-title"
+        >
+          <div className="release-art" aria-hidden="true">
+            <WeatherMark kind="clear-day" />
+          </div>
+          <p className="eyebrow">Good things on the horizon</p>
+          <h2 id="release-title">
+            Meet your new
+            <br />
+            daily outlook.
+          </h2>
+          <p className="release-description">
+            Morrow is almost here. iPhone beta first, then Android.
+            <br />A little more clarity is coming your way.
+          </p>
+          <BetaSignup beta={beta} id="footer-beta" />
+          {!signupReady && (
+            <a className="text-link" href="#try-morrow">
+              Explore the app while you wait{' '}
+              <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          )}
+        </section>
+      </main>
+
+      <footer className="site-footer shell">
+        <a href="#main" className="wordmark" aria-label="Morrow home">
+          <img src="/favicon.svg" width="28" height="28" alt="" />
+          Morrow
+        </a>
+        <span>© 2026 Morrow. A fresh outlook.</span>
+        <div className="footer-links">
+          <a href="/licenses/Meteocons.txt">Weather artwork</a>
+          <a href="/licenses/Phosphor.txt">Icons</a>
+          <a href="#main" aria-label="Back to top">
+            <ArrowDown className="back-to-top" size={18} />
+          </a>
+        </div>
+      </footer>
+    </div>
+  );
+}

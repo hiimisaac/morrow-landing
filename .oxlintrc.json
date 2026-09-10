@@ -29,6 +29,7 @@
     "build/**",
     "dist/**",
     "coverage/**",
+    "public/app-demo/**",
     "next-env.d.ts"
   ],
   "rules": {
