@@ -317,11 +317,6 @@ h1 span {
   background: color-mix(in srgb, var(--primary), #000 12%);
   transform: translateY(-1px);
 }
-.cta-aside {
-  font-size: 0.75rem;
-  font-weight: 400;
-  opacity: 0.85;
-}
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -488,8 +483,7 @@ h2 {
   letter-spacing: -0.06em;
   font-weight: 500;
 }
-.section-heading h2,
-.demo-copy h2 {
+.section-heading h2 {
   margin-top: 17px;
 }
 .section-heading > p {
@@ -574,181 +568,8 @@ h2 {
   text-align: center;
   margin-top: 20px;
 }
-.demo-section {
-  background: var(--surface);
-  border-block: 1px solid var(--border);
-}
-.demo-layout {
-  display: grid;
-  grid-template-columns: 1fr 390px;
-  align-items: center;
-  gap: 120px;
-  padding: 64px 64px;
-}
-.demo-copy > p:not(.eyebrow) {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--muted);
-  margin-top: 22px;
-  max-width: 36ch;
-}
-.place-list {
-  display: grid;
-  gap: 0;
-  margin-top: 28px;
-}
-.place-option {
-  position: relative;
-  display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) 38px auto;
-  align-items: center;
-  gap: 12px;
-  min-height: 72px;
-  border-top: 1px solid var(--border);
-  cursor: pointer;
-}
-.place-option:last-child {
-  border-bottom: 1px solid var(--border);
-}
-.place-option:hover .place-name {
-  color: var(--accent);
-}
-.place-option .place-radio {
-  color: var(--accent);
-  border-color: var(--muted);
-  width: 15px;
-  height: 15px;
-}
-.place-option .place-radio[data-checked] {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--background);
-}
-.place-name {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 550;
-  letter-spacing: -0.02em;
-}
-.place-condition {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.6875rem;
-  color: var(--muted);
-}
-.is-selected .place-name {
-  color: var(--accent);
-}
-.place-temperature {
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  min-width: 42px;
-  text-align: right;
-}
-.demo-copy .demo-help {
-  font-size: 0.75rem !important;
-}
-.demo-product {
-  min-width: 0;
-  width: 100%;
-}
-.demo-poster {
-  position: relative;
-  height: 640px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  background: var(--paper);
-  box-shadow: 0 16px 40px #332c2910;
-}
-.demo-poster > img {
-  width: 100%;
-  display: block;
-}
-.demo-launch {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-direction: column;
-  padding: 35px 20px;
-  background: linear-gradient(transparent 35%, var(--paper) 90%);
-}
-.demo-launch > p {
-  font-size: 0.75rem;
-  margin-top: 13px;
-  color: var(--muted);
-}
-.app-preview {
-  min-width: 0;
-  width: 100%;
-  scroll-margin-top: 20px;
-}
-.app-preview-label {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 14px;
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-.app-preview-label span:first-child {
-  color: var(--foreground);
-}
-.app-surface {
-  position: relative;
-  height: 640px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  border-radius: 16px;
-  background: var(--paper);
-  box-shadow: 0 16px 40px #332c2910;
-}
-.flutter-app {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: var(--paper);
-}
-.app-preview-caption {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  padding-top: 14px;
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-.app-preview-caption span {
-  color: var(--accent);
-}
-.app-loading {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 24px;
-  background: var(--paper);
-}
-.app-loading p {
-  color: var(--muted);
-  font-size: 0.875rem;
-}
-.loading-weather {
-  width: 80px;
-  height: 80px;
-  background: url('/weather/partly-cloudy-day.svg') center / contain no-repeat;
-}
-.dark .loading-weather {
-  background-image: url('/weather/partly-cloudy-day-dark.svg');
-}
 .release-section {
+  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -774,9 +595,6 @@ h2 {
 }
 .release-section .beta-signup {
   margin-top: 29px;
-}
-.release-section .text-link {
-  margin-top: 16px;
 }
 .site-footer {
   display: flex;
@@ -943,9 +761,6 @@ h2 {
   .signup-form .signup-input {
     min-width: 140px;
   }
-  .cta-aside {
-    display: none;
-  }
   .feature-copy {
     padding: 23px 20px;
   }
@@ -954,11 +769,6 @@ h2 {
   }
   .feature-panel {
     height: 30rem;
-  }
-  .demo-layout {
-    gap: 60px;
-    grid-template-columns: minmax(0, 1fr) 360px;
-    padding-inline: 25px;
   }
 }
 @media (max-width: 800px) {
@@ -1027,18 +837,6 @@ h2 {
   .feature-screen {
     margin-inline: 8px;
     padding-inline: 3px;
-  }
-  .demo-layout {
-    gap: 30px;
-    grid-template-columns: minmax(0, 1fr) 330px;
-    padding-inline: 0;
-  }
-  .demo-copy h2 {
-    font-size: 2.15rem;
-  }
-  .demo-poster,
-  .app-surface {
-    height: 630px;
   }
 }
 @media (max-width: 620px) {
@@ -1203,75 +1001,6 @@ h2 {
   .proof-note {
     font-size: 0.625rem;
   }
-  .demo-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
-    padding-block: 36px;
-  }
-  .demo-copy {
-    display: contents;
-  }
-  .demo-copy .eyebrow {
-    order: 0;
-    align-self: flex-start;
-  }
-  .demo-copy h2 {
-    order: 1;
-    align-self: flex-start;
-    margin-top: -15px;
-  }
-  .demo-copy > p:not(.eyebrow):not(.demo-help) {
-    order: 2;
-    margin-top: -10px;
-    align-self: flex-start;
-    font-size: 0.9375rem;
-    max-width: 40ch;
-  }
-  .demo-product {
-    order: 3;
-    max-width: 390px;
-  }
-  .place-list {
-    order: 4;
-    width: 100%;
-    max-width: 390px;
-    margin-top: 0;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 18px;
-  }
-  .place-option {
-    grid-template-columns: 12px minmax(0, 1fr) auto;
-    gap: 8px;
-    min-height: 75px;
-  }
-  .place-option .weather-mark {
-    display: none;
-  }
-  .place-name {
-    font-size: 0.8125rem;
-  }
-  .place-condition {
-    font-size: 0.625rem;
-  }
-  .place-temperature {
-    font-size: 1.3rem;
-    min-width: 30px;
-  }
-  .place-option:nth-last-child(2) {
-    border-bottom: 1px solid var(--border);
-  }
-  .demo-copy .demo-help {
-    order: 5;
-    margin-top: -10px;
-    width: 100%;
-    max-width: 390px;
-    font-size: 0.6875rem !important;
-  }
-  .demo-poster,
-  .app-surface {
-    height: 610px;
-  }
   .release-section {
     padding-block: 39px 43px;
   }
@@ -1321,9 +1050,6 @@ h2 {
   }
   .signup-form .signup-button {
     width: 100%;
-  }
-  .place-list {
-    gap: 0 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

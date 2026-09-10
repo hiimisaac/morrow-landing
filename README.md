@@ -41,15 +41,15 @@ Deploy only `dist/client`, which contains the prerendered page and public assets
 
 ## Landing page and launch configuration
 
-The hero uses an optimized screenshot of the actual bundled Morrow app inside lightweight device chrome. Three product panels show the hourly forecast, five-day forecast, and saved places. The real interactive Flutter release stays below the product introduction and only loads after **Start exploring**, keeping its JavaScript and CanvasKit off the initial page load. The existing appearance switch and sample-location controls remain connected to the app.
+The hero uses an optimized screenshot of the actual bundled Morrow app inside lightweight device chrome. Three product panels show the hourly forecast, five-day forecast, and saved places. The page flows directly from product screenshots to the closing beta signup. It has no embedded simulator, location picker, or browser-play prompts. The appearance switch changes the page theme and hero screenshot.
 
-On mobile, the hero copy, conversion controls, and phone appear before all location controls. Feature panels form a swipeable, keyboard-scrollable gallery on narrow screens to keep the page compact. In the demo section, the app also appears before its place selector. Screens have descriptive alternatives, form fields have labels, radios and the appearance switch are keyboard-operable, and page motion respects Reduced Motion.
+On mobile, the hero copy, conversion controls, and phone come first. Feature panels form a swipeable, keyboard-scrollable gallery on narrow screens to keep the page compact. Screens have descriptive alternatives, form fields have labels, the appearance switch is keyboard-operable, and page motion respects Reduced Motion.
 
 ### Enable the waitlist or TestFlight
 
-No waitlist endpoint or TestFlight URL exists yet. Until one is configured, the page shows **Signups open soon**, disables email collection, and provides a working **Try Morrow** action. It does not save email locally, claim a successful signup, or send email to an invented backend.
+No waitlist endpoint or TestFlight URL exists yet. Until one is configured, the page shows **Signups open soon**, disables email collection, and provides a **See the app** link to the screenshot gallery. It does not save email locally, claim a successful signup, or send email to an invented backend.
 
-The privacy policy is available at `/privacy`, linked in the footer and both signup areas. It covers the website demo, native weather/location requests, local storage, optional alerts, and TestFlight. Before enabling email collection, update its waitlist section with the chosen provider, retention, and unsubscribe/deletion process. See [privacy review notes](docs/privacy-review.md) for the source audit and operator/native-app launch follow-ups.
+The privacy policy is available at `/privacy`, linked in the footer and both signup areas. It covers the website, native weather/location requests, local storage, optional alerts, and TestFlight. Before enabling email collection, update its waitlist section with the chosen provider, retention, and unsubscribe/deletion process. See [privacy review notes](docs/privacy-review.md) for the source audit and operator/native-app launch follow-ups.
 
 Preview `/privacy` with `npm run dev`. For a plain Python file-server preview of `dist/client`, open `/privacy.html` directly; [Cloudflare Pages serves that exported file at `/privacy`](https://developers.cloudflare.com/pages/configuration/serving-pages/). Policy links use standard page navigation, so they also work without JavaScript.
 
@@ -81,36 +81,31 @@ npm run build
 python3 -m http.server 4173 --directory dist/client
 ```
 
-Check the hero and lower conversion area in three configurations: no variables, a real waitlist endpoint, and a real TestFlight invitation. A configured form should use native email validation and reach the provider's real confirmation page. The demo can be opened separately from the hero and supports all four sample locations. Check narrow mobile, tablet, desktop, keyboard focus, and light/dark appearance.
+Check the hero and lower conversion area in three configurations: no variables, a real waitlist endpoint, and a real TestFlight invitation. A configured form should use native email validation and reach the provider's real confirmation page. The **See the app** link should scroll to the screenshot panels, and no iframe or Flutter assets should load while browsing the landing page. Check narrow mobile, tablet, desktop, keyboard focus, and light/dark appearance.
 
 ### Visual assets
 
 `public/screenshots` contains WebP captures of the real app release, not a React recreation. Source revision and capture details live in `public/screenshots/README.md`. Refresh these when the app's appearance changes. App artwork, fonts, local weather icons, and existing attribution files are retained. All weather readings shown are fictional examples.
 
-## The real app demo
+## Screenshot capture source
 
-The interactive surface embeds a Flutter web release of [Morrow](https://github.com/hiimisaac/morrow), using `lib/main_demo.dart`. It instantiates the same `MorrowApp`, pages, controller, themes, and Flame renderer as the native entry point. There is no React recreation of the phone UI.
+The existing compiled Flutter sample release in `public/app-demo` and its update script are retained as the source for product screenshots. The landing page does not link to, embed, or load it. Its React wrapper and location-selector data have been removed.
 
-Only the data and startup services differ: four frozen forecasts replace the weather provider, storage lives in memory, and native location, widget publishing, background refresh, and push services are not initialized. Scroll, open settings, change units, and try saved places inside the app. City and appearance controls communicate without reloading the app. The host and child validate message origins and source windows; revisions prevent stale selections from winning.
-
-The compiled app is checked into this landing repository so the existing Pages settings stay the same. To update it after committing changes in the app repository:
+To refresh the capture source after committing changes in the app repository:
 
 ```sh
 FLUTTER_BIN=/path/to/flutter/bin/flutter ./scripts/update-app-demo.sh /path/to/morrow
-npm run build
-npx tsc --noEmit
 ```
 
-Use the Flutter version recorded in `public/app-demo/flutter-version.json`. The script records the exact app commit and asset hashes, omits debug symbols, and checks the Pages per-file size limit. Commit the resulting `public/app-demo` changes with the page changes. The release uses local CanvasKit assets and does not register a service worker.
+Use the Flutter version recorded in `public/app-demo/flutter-version.json`. The script records the exact app commit and asset hashes, omits debug symbols, and checks the Pages per-file size limit. Follow `public/screenshots/README.md` to capture updated images. The sample release remains directly accessible as a static asset, but is not part of the landing-page experience.
 
 ## Files and attribution
 
 - `app/page.tsx`: resolves public launch destinations at build time.
-- `components/morrow-landing.tsx`: responsive page, appearance state, and sample selector.
+- `components/morrow-landing.tsx`: responsive page, screenshot gallery, and appearance state.
 - `components/beta-signup.tsx`: shared hero/footer conversion UI and native POST form.
 - `lib/beta-config.ts`: destination validation; covered by `tests/beta-config.test.mjs`.
 - `components/product-screen.tsx`: device chrome around the real app capture.
-- `components/flutter-demo.tsx`: unchanged same-origin app message bridge, loading, and retry UI.
 - `public/screenshots`: product captures; `public/app-demo`: compiled Flutter release and provenance.
 - `scripts/update-app-demo.sh`: rebuilds the demo from the app repository.
 - `app/globals.css`: themes, typography, device frame, responsive layout, and reduced motion.

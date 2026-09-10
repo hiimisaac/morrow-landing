@@ -5,15 +5,11 @@
 /* oxlint-disable jsx-a11y/no-noninteractive-tabindex -- The overflow gallery must support native keyboard scrolling. */
 
 import { useState } from 'react';
-import { ArrowDown, ArrowRight, Moon, Play, Sun } from 'lucide-react';
+import { ArrowDown, ArrowRight, Moon, Sun } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
-import { Button } from '@/components/ui/button';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { WeatherMark } from '@/components/weather-glyph';
-import { FlutterDemo } from '@/components/flutter-demo';
 import { BetaSignup } from '@/components/beta-signup';
 import { ProductScreen } from '@/components/product-screen';
-import { demoForecasts } from '@/lib/demo-forecasts';
 import type { BetaConfig } from '@/lib/beta-config';
 
 const features = [
@@ -54,9 +50,6 @@ const features = [
 
 export function MorrowLanding({ beta }: { beta: BetaConfig }) {
   const [dark, setDark] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [demoStarted, setDemoStarted] = useState(false);
-  const forecast = demoForecasts[selectedIndex];
   const signupReady = Boolean(beta.testFlightUrl || beta.waitlistAction);
 
   return (
@@ -71,7 +64,6 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
         </a>
         <nav className="header-nav" aria-label="Main navigation">
           <a href="#the-details">The outlook</a>
-          <a href="#try-morrow">Try Morrow</a>
         </nav>
         <div className="header-actions">
           <div className="appearance-control">
@@ -109,13 +101,8 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
             </p>
             <div className="hero-conversion">
               <BetaSignup beta={beta} id="hero-beta" />
-              <a
-                className={signupReady ? 'text-link' : 'primary-cta'}
-                href="#try-morrow"
-              >
-                <Play size={16} aria-hidden="true" /> Try Morrow
-                <span className="cta-aside">Right here in your browser</span>
-                <ArrowRight size={17} aria-hidden="true" />
+              <a className="text-link" href="#the-details">
+                See the app <ArrowDown size={17} aria-hidden="true" />
               </a>
             </div>
             <div className="hero-footnote">
@@ -189,102 +176,6 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
         </section>
 
         <section
-          className="demo-section"
-          id="try-morrow"
-          aria-labelledby="demo-title"
-        >
-          <div className="demo-layout shell">
-            <div className="demo-copy">
-              <p className="eyebrow">Take a look around</p>
-              <h2 id="demo-title">
-                A change of scenery.
-                <br />
-                Same clear outlook.
-              </h2>
-              <p>
-                Rain in Seattle. Sunshine in Santa Fe. Spend a moment with
-                Morrow and see how it feels.
-              </p>
-              <RadioGroup
-                className="place-list"
-                value={forecast.id}
-                onValueChange={(value) => {
-                  const index = demoForecasts.findIndex(
-                    (item) => item.id === value,
-                  );
-                  if (index >= 0) setSelectedIndex(index);
-                }}
-                aria-label="Choose a sample forecast"
-              >
-                {demoForecasts.map((item, index) => (
-                  <label
-                    className={`place-option${selectedIndex === index ? ' is-selected' : ''}`}
-                    key={item.id}
-                  >
-                    <RadioGroupItem
-                      className="place-radio"
-                      value={item.id}
-                      aria-label={`${item.city}${item.isDay ? '' : ' after dark'}`}
-                      aria-controls="forecast-demo"
-                    />
-                    <span className="place-identity">
-                      <span className="place-name">{item.city}</span>
-                      <span className="place-condition">
-                        {item.isDay ? item.condition : 'After dark'}
-                      </span>
-                    </span>
-                    <WeatherMark kind={item.kind} />
-                    <span className="place-temperature">
-                      {item.temperature}°
-                    </span>
-                  </label>
-                ))}
-              </RadioGroup>
-              <p className="demo-help">
-                Sample forecasts. No location access needed.
-                <br />
-                Try settings, change units, or explore a day.
-              </p>
-            </div>
-            <div className="demo-product">
-              {demoStarted ? (
-                <FlutterDemo
-                  scenario={forecast.id}
-                  dark={dark}
-                  onChange={(state) => {
-                    const index = demoForecasts.findIndex(
-                      (item) => item.id === state.scenario,
-                    );
-                    if (index >= 0) setSelectedIndex(index);
-                    setDark(state.dark);
-                  }}
-                />
-              ) : (
-                <div className="demo-poster" id="forecast-demo">
-                  <img
-                    src={`/screenshots/current-${dark ? 'dark' : 'light'}.webp`}
-                    width="780"
-                    height="1560"
-                    alt="Preview of the Morrow app. Start the interactive demo to explore a sample forecast."
-                    loading="lazy"
-                  />
-                  <div className="demo-launch">
-                    <Button
-                      className="primary-cta"
-                      onClick={() => setDemoStarted(true)}
-                    >
-                      <Play size={18} aria-hidden="true" /> Start exploring{' '}
-                      <ArrowRight size={18} aria-hidden="true" />
-                    </Button>
-                    <p>The real app. A few places to play.</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section
           className="release-section shell"
           id="early-access"
           aria-labelledby="release-title"
@@ -303,12 +194,6 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
             <br />A little more clarity is coming your way.
           </p>
           <BetaSignup beta={beta} id="footer-beta" />
-          {!signupReady && (
-            <a className="text-link" href="#try-morrow">
-              Explore the app while you wait{' '}
-              <ArrowRight size={16} aria-hidden="true" />
-            </a>
-          )}
         </section>
       </main>
 

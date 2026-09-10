@@ -10,7 +10,7 @@ draft for operator review in the PR, not a determination of legal compliance.
 
 Native source inspected: [`hiimisaac/morrow` at
 `7bb5a266442b0c70a69cbf8d95ff99fcc05f74eb`](https://github.com/hiimisaac/morrow/tree/7bb5a266442b0c70a69cbf8d95ff99fcc05f74eb),
-the same revision recorded for the bundled website demo. Source inspection does
+the same revision recorded for the retained screenshot-capture release. Source inspection does
 not establish which optional services are configured in a deployed app build.
 
 | Behavior                                                                                                                  | Source in the native repository                                                                                       |
@@ -22,6 +22,10 @@ not establish which optional services are configured in a deployed app build.
 | Optional Supabase setup; anonymous authentication only on subscription; APNs token, zone codes, and subscription deletion | `lib/weather/data/morrow_backend.dart`, `lib/weather/data/supabase_weather_alert_subscription_service.dart`           |
 | Delivery records cascade on subscription deletion; scheduled cleanup of records older than 30 days                        | `supabase/migrations/20260906000100_create_alert_subscriptions.sql`, `supabase/functions/poll-severe-alerts/index.ts` |
 | Sample-only demo, without native location, background work, or push initialization                                        | `lib/main_demo.dart`, `lib/demo/demo_weather_repository.dart`                                                         |
+
+The landing page now uses screenshot previews only. Its interactive demo,
+React bridge, and city selector have been removed; the original compiled sample
+release remains as a capture source and is not linked or loaded by the page.
 
 The landing source has no analytics SDK, tracking pixels, advertising cookies,
 or active waitlist endpoint. The current live site's HTML was also inspected for
@@ -67,5 +71,5 @@ Provider references checked September 9, 2026:
   invitation URL still needs to be supplied separately.
 
 The public policy describes optional alerts conditionally and does not claim
-that the website demo collects location, that providers keep no logs, or that
+that the website collects location, that providers keep no logs, or that
 uninstalling the app deletes a remote subscription.

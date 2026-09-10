@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const sections = [
-  ['website', 'The website and demo'],
+  ['website', 'The website'],
   ['weather', 'Location and weather'],
   ['device', 'Information on your device'],
   ['alerts', 'Optional push alerts'],
@@ -78,12 +78,12 @@ export default function PrivacyPage() {
         </nav>
 
         <section id="website" aria-labelledby="website-title">
-          <h2 id="website-title">1. The website and demo</h2>
+          <h2 id="website-title">1. The website</h2>
           <p>
-            The interactive website demo uses sample forecasts. It does not ask
-            for your location or connect to the app’s weather or notification
-            services. Demo choices live in the browser session. Your browser may
-            cache the files needed to display the site and demo.
+            Website previews use sample forecasts to illustrate the app. The
+            website does not ask for your location or connect to the app’s
+            weather or notification services. Your browser may cache the files
+            needed to display the site.
           </p>
           <p>
             Cloudflare hosts and delivers the website. When you visit, it
