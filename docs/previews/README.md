@@ -1,6 +1,8 @@
 # Landing page previews
 
-Captured from the final static production export with both launch destinations unset.
+Captured from the static production export with both launch destinations unset.
+The three feature screenshots share aligned, equally sized windows, and the hero
+shows the app without a floating summary blurb.
 
 - [Desktop — 1440px wide](desktop.webp)
 - [Mobile — 390px wide](mobile.webp)

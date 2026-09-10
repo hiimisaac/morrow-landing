@@ -46,7 +46,7 @@ const features = [
     description:
       'Home, away, and somewhere you’d rather be. Save your places and take their last forecast offline.',
     image: 'places-light',
-    alt: 'Morrow’s saved places, showing the sample forecasts for Pittsburgh, Seattle, and Santa Fe.',
+    alt: 'Morrow’s saved locations screen, showing Pittsburgh’s current conditions and high and low temperatures.',
     width: 732,
     height: 1012,
   },
@@ -130,23 +130,6 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
                 <span>{dark ? '47°' : '52°'} / 40.44° N</span>
               </div>
               <ProductScreen dark={dark} />
-              <div className="product-tag" aria-hidden="true">
-                <WeatherMark
-                  kind={dark ? 'clear-night' : 'partly-cloudy-day'}
-                />
-                <div>
-                  <strong>
-                    {dark
-                      ? 'Good evening, Pittsburgh.'
-                      : 'A good day to get out.'}
-                  </strong>
-                  <span>
-                    {dark
-                      ? 'The day winds down. Your outlook stays clear.'
-                      : 'Your next few hours, already in view.'}
-                  </span>
-                </div>
-              </div>
             </div>
             <figcaption>
               Actual Morrow app <span>·</span> Sample forecast
@@ -183,10 +166,7 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
             aria-label="Morrow features"
           >
             {features.map((feature) => (
-              <article
-                className={`feature-panel feature-${feature.number}`}
-                key={feature.number}
-              >
+              <article className="feature-panel" key={feature.number}>
                 <div className="feature-copy">
                   <p className="feature-label">
                     <span>{feature.number}</span>
@@ -204,11 +184,6 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
                     loading="lazy"
                   />
                 </div>
-                {feature.number === '01' && (
-                  <p className="feature-annotation">
-                    <span className="status-dot" /> Your afternoon, at a glance.
-                  </p>
-                )}
               </article>
             ))}
           </section>

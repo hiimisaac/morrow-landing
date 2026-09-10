@@ -454,34 +454,6 @@ h1 span {
   border-radius: 4px;
   background: currentColor;
 }
-.product-tag {
-  position: absolute;
-  z-index: 2;
-  bottom: 46px;
-  right: -16px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  width: 290px;
-  padding: 16px 18px;
-  border-radius: 11px;
-  background: var(--background);
-  box-shadow: 0 8px 32px #302d2b12;
-  border: 1px solid color-mix(in srgb, var(--border), transparent 30%);
-}
-.product-tag strong {
-  display: block;
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: -0.015em;
-}
-.product-tag span:not(.weather-mark) {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.625rem;
-  line-height: 1.5;
-  color: var(--muted);
-}
 .hero-product figcaption {
   display: flex;
   gap: 9px;
@@ -553,6 +525,8 @@ h2 {
   gap: 18px;
 }
 .feature-panel {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   overflow: hidden;
   position: relative;
@@ -562,6 +536,7 @@ h2 {
   background: var(--surface);
 }
 .feature-copy {
+  flex: 1;
   padding: 26px 26px 23px;
 }
 .feature-label {
@@ -590,7 +565,9 @@ h2 {
   margin-top: 10px;
 }
 .feature-screen {
-  margin: 0 18px;
+  flex-shrink: 0;
+  aspect-ratio: 366 / 232;
+  margin: 0 18px 24px;
   padding: 13px 6px;
   border: 1px solid #e6ddd6;
   border-radius: 10px;
@@ -601,23 +578,9 @@ h2 {
 .feature-screen img {
   display: block;
   width: 100%;
-  height: auto;
-}
-.feature-01 .feature-screen {
-  margin-top: 12px;
-}
-.feature-annotation {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  justify-content: center;
-  color: var(--muted);
-  margin: 22px 16px;
-  font-size: 0.6875rem;
-}
-.feature-02 .feature-screen,
-.feature-03 .feature-screen {
-  border-radius: 10px 10px 0 0;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 .proof-note {
   color: var(--muted);
@@ -893,11 +856,6 @@ h2 {
   .phone-device {
     width: 255px;
   }
-  .product-tag {
-    right: -9px;
-    width: 262px;
-    padding: 13px;
-  }
   .signup-form {
     flex-wrap: wrap;
   }
@@ -968,14 +926,6 @@ h2 {
   .stage-caption span:last-child {
     display: none;
   }
-  .product-tag {
-    bottom: 30px;
-    right: -8px;
-    width: 242px;
-  }
-  .product-tag strong {
-    font-size: 0.75rem;
-  }
   .section-heading {
     align-items: flex-start;
   }
@@ -1006,9 +956,6 @@ h2 {
   .feature-screen {
     margin-inline: 8px;
     padding-inline: 3px;
-  }
-  .feature-annotation {
-    font-size: 0.625rem;
   }
   .demo-layout {
     gap: 30px;
@@ -1117,11 +1064,6 @@ h2 {
   .phone-connectivity svg {
     width: 12px;
   }
-  .product-tag {
-    bottom: 30px;
-    right: 9px;
-    width: 256px;
-  }
   .hero-product figcaption {
     margin-top: 12px;
   }
@@ -1181,19 +1123,8 @@ h2 {
     margin-top: 9px;
   }
   .feature-screen {
-    margin: 0 19px;
+    margin: 0 19px 24px;
     padding: 10px 5px;
-  }
-  .feature-01 .feature-screen {
-    margin-top: 0;
-  }
-  .feature-annotation {
-    font-size: 0.6875rem;
-    margin-block: 18px 24px;
-  }
-  .feature-02 .feature-screen,
-  .feature-03 .feature-screen {
-    height: 286px;
   }
   .feature-screen img {
     max-width: 366px;
