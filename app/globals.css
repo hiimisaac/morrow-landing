@@ -22,7 +22,7 @@
   --font-sans: Inter, sans-serif;
 }
 :root {
-  --background: #faf9f6;
+  --background: #f8f3ef;
   --foreground: #332c29;
   --primary: #d83c1b;
   --primary-foreground: #fff;
@@ -35,7 +35,7 @@
   --theme-duration: 250ms;
 }
 .dark {
-  --background: #1a191d;
+  --background: #211f25;
   --foreground: #f3ece6;
   --primary: #ff815f;
   --primary-foreground: #211f25;
@@ -53,7 +53,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 28px;
-  background: #faf9f6;
+  background: #f8f3ef;
+}
+html:has(.morrow-site.dark) {
+  background: #211f25;
 }
 body {
   margin: 0;

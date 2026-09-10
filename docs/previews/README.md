@@ -3,7 +3,8 @@
 Captured from the static production export with both launch destinations unset.
 The three feature screenshots share aligned, equally sized windows, and the hero
 shows just the phone with a soft shadow, without a backdrop, decorative labels,
-or summary blurb.
+or summary blurb. The page matches the app’s backgrounds: `#F8F3EF` in light
+appearance and `#211F25` in dark appearance.
 
 - [Desktop — 1440px wide](desktop.webp)
 - [Mobile — 390px wide](mobile.webp)
