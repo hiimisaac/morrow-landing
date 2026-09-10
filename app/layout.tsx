@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Morrow — Your day, at a glance',
+  title: 'Morrow — Your day. Beautifully clear.',
   description:
-    'The weather now, the hours ahead, and the places you keep close. Explore Morrow with interactive sample forecasts. iPhone beta first, Android to follow.',
+    'Know the hour to head out. See the week taking shape. Meet Morrow, a beautifully clear weather app. iPhone beta first, Android follows.',
   icons: { icon: '/favicon.svg' },
 };
 
