@@ -8,6 +8,8 @@ appearance and `#211F25` in dark appearance.
 
 - [Desktop — 1440px wide](desktop.webp)
 - [Mobile — 390px wide](mobile.webp)
+- [Privacy policy — desktop](privacy-desktop.webp)
+- [Privacy policy — mobile](privacy-mobile.webp)
 
 On mobile, the next feature panel peeks into view; swipe or focus the gallery and
 use the left/right arrow keys to see the other panels. These images show the

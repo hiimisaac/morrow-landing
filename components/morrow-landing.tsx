@@ -1,7 +1,7 @@
 'use client';
 
 /* oxlint-disable next/no-img-element -- Screenshots are pre-optimized WebP assets in a static export. */
-/* oxlint-disable next/no-html-link-for-pages -- Footer destinations are static license files. */
+/* oxlint-disable next/no-html-link-for-pages -- Static export destinations use native links, without client-router prefetching. */
 /* oxlint-disable jsx-a11y/no-noninteractive-tabindex -- The overflow gallery must support native keyboard scrolling. */
 
 import { useState } from 'react';
@@ -319,6 +319,7 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
         </a>
         <span>© 2026 Morrow. A fresh outlook.</span>
         <div className="footer-links">
+          <a href="/privacy">Privacy</a>
           <a href="/licenses/Meteocons.txt">Weather artwork</a>
           <a href="/licenses/Phosphor.txt">Icons</a>
           <a href="#main" aria-label="Back to top">

@@ -49,6 +49,10 @@ On mobile, the hero copy, conversion controls, and phone appear before all locat
 
 No waitlist endpoint or TestFlight URL exists yet. Until one is configured, the page shows **Signups open soon**, disables email collection, and provides a working **Try Morrow** action. It does not save email locally, claim a successful signup, or send email to an invented backend.
 
+The privacy policy is available at `/privacy`, linked in the footer and both signup areas. It covers the website demo, native weather/location requests, local storage, optional alerts, and TestFlight. Before enabling email collection, update its waitlist section with the chosen provider, retention, and unsubscribe/deletion process. See [privacy review notes](docs/privacy-review.md) for the source audit and operator/native-app launch follow-ups.
+
+Preview `/privacy` with `npm run dev`. For a plain Python file-server preview of `dist/client`, open `/privacy.html` directly; [Cloudflare Pages serves that exported file at `/privacy`](https://developers.cloudflare.com/pages/configuration/serving-pages/). Policy links use standard page navigation, so they also work without JavaScript.
+
 Copy `.env.example` to `.env.local` for local preview, or set the following public build-time variables in Cloudflare Pages (set Preview and Production separately as needed), then rebuild:
 
 | Variable                      | Behavior                                                                                                                                                |

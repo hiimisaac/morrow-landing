@@ -1,3 +1,5 @@
+/* oxlint-disable next/no-html-link-for-pages -- Native links keep static export navigation independent of the client router. */
+
 import { ArrowRight, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +14,8 @@ export function BetaSignup({ beta, id }: { beta: BetaConfig; id: string }) {
           <ArrowRight size={18} aria-hidden="true" />
         </a>
         <p className="signup-note">
-          Available through TestFlight. Android follows.
+          Available through TestFlight. Android follows.{' '}
+          <a href="/privacy">Privacy policy</a>
         </p>
       </div>
     );
@@ -52,7 +55,8 @@ export function BetaSignup({ beta, id }: { beta: BetaConfig; id: string }) {
       <p className="signup-note" id={`${id}-note`}>
         {enabled
           ? 'Be first in line for the iPhone beta. Android follows.'
-          : 'iPhone beta on the horizon. Android follows.'}
+          : 'iPhone beta on the horizon. Android follows.'}{' '}
+        <a href="/privacy">Privacy policy</a>
       </p>
     </div>
   );

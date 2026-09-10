@@ -289,6 +289,13 @@ h1 span {
   line-height: 1.6;
   color: var(--muted);
 }
+.signup-note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.signup-note a:hover {
+  color: var(--foreground);
+}
 .primary-cta {
   display: inline-flex;
   align-items: center;
@@ -797,6 +804,98 @@ h2 {
 }
 .back-to-top {
   transform: rotate(180deg);
+}
+
+.privacy-header {
+  justify-content: space-between;
+  gap: 20px;
+}
+.privacy-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+.privacy-back:hover {
+  color: var(--foreground);
+}
+.privacy-content {
+  max-width: 740px;
+  padding-block: clamp(40px, 6vw, 80px) 80px;
+  font-size: 1rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.privacy-content h1 {
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  margin-top: 16px;
+}
+.privacy-content .privacy-date {
+  margin-top: 18px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.privacy-content .privacy-lead {
+  margin-top: 32px;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.5;
+}
+.privacy-content p + p {
+  margin-top: 16px;
+}
+.privacy-content a {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 4px;
+}
+.privacy-content a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+.privacy-contents {
+  margin-block: 36px 44px;
+  padding-block: 24px;
+  border-block: 1px solid var(--border);
+}
+.privacy-content ul,
+.privacy-content ol {
+  padding-left: 22px;
+  margin-block: 16px;
+}
+.privacy-content ul {
+  list-style: disc;
+}
+.privacy-content ol {
+  list-style: decimal;
+}
+.privacy-contents ol {
+  columns: 2 250px;
+  column-gap: 36px;
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+.privacy-contents li {
+  break-inside: avoid;
+}
+.privacy-contents a {
+  display: inline-block;
+  padding-block: 5px;
+}
+.privacy-content section + section {
+  margin-top: 36px;
+}
+.privacy-content h2 {
+  font-size: 1.375rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  margin-bottom: 16px;
+}
+.privacy-content li + li {
+  margin-top: 8px;
 }
 
 @media (min-width: 1440px) {
