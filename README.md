@@ -51,6 +51,12 @@ No waitlist endpoint or TestFlight URL exists yet. Until one is configured, the 
 
 The privacy policy is available at `/privacy`, linked in the footer and both signup areas. It covers the website, native weather/location requests, local storage, optional alerts, and TestFlight. Before enabling email collection, update its waitlist section with the chosen provider, retention, and unsubscribe/deletion process. See [privacy review notes](docs/privacy-review.md) for the source audit and operator/native-app launch follow-ups.
 
+The support page at `/support` provides `support@hellomorrow.app` and help for
+location, saved forecasts, preferences, widgets, and foreground alerts. Both
+the homepage and privacy page link to it. It is exported with the other static
+pages; the App Store Support URL is `https://hellomorrow.app/support` after
+production deployment is verified. Mailbox receipt requires a separate check.
+
 Preview `/privacy` with `npm run dev`. For a plain Python file-server preview of `dist/client`, open `/privacy.html` directly; [Cloudflare Pages serves that exported file at `/privacy`](https://developers.cloudflare.com/pages/configuration/serving-pages/). Policy links use standard page navigation, so they also work without JavaScript.
 
 Copy `.env.example` to `.env.local` for local preview, or set the following public build-time variables in Cloudflare Pages (set Preview and Production separately as needed), then rebuild:
