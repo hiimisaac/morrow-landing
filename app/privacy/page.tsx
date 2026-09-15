@@ -328,6 +328,7 @@ export default function PrivacyPage() {
         </a>
         <span>© 2026 Morrow. A fresh outlook.</span>
         <div className="footer-links">
+          <a href="/support">Support</a>
           <a href="mailto:privacy@hellomorrow.app">Privacy questions</a>
           <a href="/">Back to Morrow</a>
         </div>

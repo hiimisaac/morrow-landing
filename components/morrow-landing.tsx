@@ -204,6 +204,7 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
         </a>
         <span>© 2026 Morrow. A fresh outlook.</span>
         <div className="footer-links">
+          <a href="/support">Support</a>
           <a href="/privacy">Privacy</a>
           <a href="/licenses/Meteocons.txt">Weather artwork</a>
           <a href="/licenses/Phosphor.txt">Icons</a>
