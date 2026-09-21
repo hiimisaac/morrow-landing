@@ -1,6 +1,6 @@
 # Morrow
 
-A landing page for Morrow, a thoughtfully designed weather app for iPhone and iPad.
+A landing page for Morrow, a thoughtfully designed weather app for iPhone and iPad. Android is coming soon and still in testing.
 
 Built with React, TypeScript, Vinext, and the Sites starter. The production build exports static HTML, CSS, JavaScript, and locally hosted assets for Cloudflare Pages. No API keys or runtime services are required.
 

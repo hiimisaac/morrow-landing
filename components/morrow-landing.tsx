@@ -106,7 +106,7 @@ export function MorrowLanding() {
             </div>
             <div className="hero-footnote">
               <span>Made for your everyday.</span>
-              <span>Now on iPhone and iPad.</span>
+              <span>iPhone and iPad today. Android coming soon.</span>
             </div>
           </div>
           <figure className="hero-product">
@@ -190,7 +190,7 @@ export function MorrowLanding() {
           </h2>
           <p className="release-description">
             Morrow is ready when you are. Download it free on the App Store.
-            <br />A little more clarity for your everyday.
+            <br />Android is coming soon and still in testing.
           </p>
           <AppStoreLink />
         </section>

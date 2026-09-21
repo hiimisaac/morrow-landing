@@ -11,7 +11,8 @@ export function AppStoreLink() {
         <ArrowRight size={18} aria-hidden="true" />
       </a>
       <p className="app-store-note">
-        Free for iPhone and iPad. <a href="/privacy">Privacy policy</a>
+        Free for iPhone and iPad. Android is coming soon and still in testing.{' '}
+        <a href="/privacy">Privacy policy</a>
       </p>
     </div>
   );
