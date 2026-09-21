@@ -8,7 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Privacy policy — Morrow',
   description:
-    'How Morrow handles location, forecasts, optional alerts, and information shared through the website and iPhone beta.',
+    'How Morrow handles location, forecasts, optional alerts, and information shared through the website and App Store app.',
 };
 
 const sections = [
@@ -16,7 +16,7 @@ const sections = [
   ['weather', 'Location and weather'],
   ['device', 'Information on your device'],
   ['alerts', 'Optional push alerts'],
-  ['beta', 'TestFlight and contacting us'],
+  ['app-store', 'The App Store and contacting us'],
   ['providers', 'Service providers and sharing'],
   ['retention', 'How long information stays'],
   ['choices', 'Your choices and rights'],
@@ -51,8 +51,8 @@ export default function PrivacyPage() {
           </p>
           <p>
             This policy explains how Morrow (“we,” “us,” or “our”) handles
-            information in the Morrow weather app, including beta builds, and at
-            hellomorrow.app. Morrow is the name we use to provide these
+            information in the Morrow weather app and at hellomorrow.app.
+            Morrow is the name we use to provide these
             services. For privacy questions or requests, email{' '}
             <a href="mailto:privacy@hellomorrow.app">privacy@hellomorrow.app</a>
             . Features vary by platform and release; optional features described
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
             We do not sell personal information or use it for targeted
             advertising. The app and website do not include advertising trackers
             or analytics SDKs. Weather providers, hosting services, and Apple’s
-            beta tools still process information as described below.
+            platform services still process information as described below.
           </p>
         </div>
 
@@ -92,13 +92,6 @@ export default function PrivacyPage() {
             reliability, and protect the service. The landing page does not set
             advertising or analytics cookies. Infrastructure providers may
             process security and operational data under their own policies.
-          </p>
-          <p>
-            Website waitlist signups are not open, and the disabled email form
-            does not collect or save your email address. Before enabling a
-            waitlist, we will update this policy to identify the email service,
-            explain retention, and describe how to unsubscribe or request
-            deletion.
           </p>
         </section>
 
@@ -175,19 +168,16 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section id="beta" aria-labelledby="beta-title">
-          <h2 id="beta-title">5. TestFlight and contacting us</h2>
+        <section id="app-store" aria-labelledby="app-store-title">
+          <h2 id="app-store-title">5. The App Store and contacting us</h2>
           <p>
-            If you join an iPhone beta through TestFlight, Apple automatically
-            collects crash logs and usage information and shares them with us.
-            Apple also shares feedback you submit. Depending on how you join and
-            what you send, this information may include your name, email
-            address, device details, and screenshots. We use beta information to
-            investigate problems and improve Morrow. See{' '}
-            <a href="https://www.apple.com/legal/privacy/data/en/test-flight/">
-              Apple’s TestFlight privacy notice
+            Morrow is distributed through the Apple App Store. Apple’s privacy
+            policy governs information it processes for your Apple account,
+            purchases, downloads, and App Store use. See{' '}
+            <a href="https://www.apple.com/legal/privacy/">
+              Apple’s privacy policy
             </a>{' '}
-            for the information Apple collects and the choices it provides.
+            for details and available choices.
           </p>
           <p>
             If you email us, we receive your email address and anything you
@@ -201,7 +191,8 @@ export default function PrivacyPage() {
           <h2 id="providers-title">6. Service providers and sharing</h2>
           <p>
             We use the providers described in this policy to deliver the
-            website, forecasts, and optional beta and notification services.
+            website, App Store distribution, forecasts, and optional notification
+            services.
             They may process connection information and operational or security
             logs in addition to the feature-specific information described
             above. Their own notices explain their practices:
@@ -227,7 +218,7 @@ export default function PrivacyPage() {
             </li>
             <li>
               <a href="https://www.apple.com/legal/privacy/">Apple</a> — iPhone
-              platform services, push delivery, and TestFlight. Other device
+              platform services, App Store distribution, and push delivery. Other device
               providers’ policies apply to their location and backup services.
             </li>
           </ul>
@@ -261,7 +252,7 @@ export default function PrivacyPage() {
               a subscription-deletion request.
             </li>
             <li>
-              <strong>Support and beta feedback.</strong> We keep information
+              <strong>Support and feedback.</strong> We keep information
               needed to resolve your request, investigate issues, and maintain
               necessary records. You can ask us to delete it. Information held
               by Apple and other providers is also subject to their retention

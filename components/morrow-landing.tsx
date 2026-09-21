@@ -8,9 +8,9 @@ import { useState } from 'react';
 import { ArrowDown, ArrowRight, Moon, Sun } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { WeatherMark } from '@/components/weather-glyph';
-import { BetaSignup } from '@/components/beta-signup';
+import { AppStoreLink } from '@/components/app-store-link';
 import { ProductScreen } from '@/components/product-screen';
-import type { BetaConfig } from '@/lib/beta-config';
+import { APP_STORE_URL } from '@/lib/app-store';
 
 const features = [
   {
@@ -48,9 +48,8 @@ const features = [
   },
 ];
 
-export function MorrowLanding({ beta }: { beta: BetaConfig }) {
+export function MorrowLanding() {
   const [dark, setDark] = useState(false);
-  const signupReady = Boolean(beta.testFlightUrl || beta.waitlistAction);
 
   return (
     <div className={`morrow-site${dark ? ' dark' : ''}`}>
@@ -76,8 +75,8 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
             />
             <Moon size={16} aria-hidden="true" />
           </div>
-          <a href="#early-access" className="header-cta">
-            {signupReady ? 'Get early access' : 'Beta coming soon'}
+          <a href={APP_STORE_URL} className="header-cta">
+            Download
             <ArrowRight size={15} aria-hidden="true" />
           </a>
         </div>
@@ -100,14 +99,14 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
               way.
             </p>
             <div className="hero-conversion">
-              <BetaSignup beta={beta} id="hero-beta" />
+              <AppStoreLink />
               <a className="text-link" href="#the-details">
                 See the app <ArrowDown size={17} aria-hidden="true" />
               </a>
             </div>
             <div className="hero-footnote">
               <span>Made for your everyday.</span>
-              <span>Starting with iPhone.</span>
+              <span>Now on iPhone and iPad.</span>
             </div>
           </div>
           <figure className="hero-product">
@@ -177,23 +176,23 @@ export function MorrowLanding({ beta }: { beta: BetaConfig }) {
 
         <section
           className="release-section shell"
-          id="early-access"
+          id="download"
           aria-labelledby="release-title"
         >
           <div className="release-art" aria-hidden="true">
             <WeatherMark kind="clear-day" />
           </div>
-          <p className="eyebrow">Good things on the horizon</p>
+          <p className="eyebrow">Available now</p>
           <h2 id="release-title">
             Meet your new
             <br />
             daily outlook.
           </h2>
           <p className="release-description">
-            Morrow is almost here. iPhone beta first, then Android.
-            <br />A little more clarity is coming your way.
+            Morrow is ready when you are. Download it free on the App Store.
+            <br />A little more clarity for your everyday.
           </p>
-          <BetaSignup beta={beta} id="footer-beta" />
+          <AppStoreLink />
         </section>
       </main>
 

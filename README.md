@@ -1,6 +1,6 @@
 # Morrow
 
-A landing page for Morrow, a thoughtfully designed weather app. iPhone beta first, Android to follow.
+A landing page for Morrow, a thoughtfully designed weather app for iPhone and iPad.
 
 Built with React, TypeScript, Vinext, and the Sites starter. The production build exports static HTML, CSS, JavaScript, and locally hosted assets for Cloudflare Pages. No API keys or runtime services are required.
 
@@ -39,30 +39,19 @@ npx tsc --noEmit
 
 Deploy only `dist/client`, which contains the prerendered page and public assets. The other directories under `dist` contain build intermediates.
 
-## Landing page and launch configuration
+## Landing page
 
-The hero uses an optimized screenshot of the actual bundled Morrow app inside lightweight device chrome. Three product panels show the hourly forecast, five-day forecast, and saved places. The page flows directly from product screenshots to the closing beta signup. It has no embedded simulator, location picker, or browser-play prompts. The appearance switch changes the page theme and hero screenshot.
+The hero uses an optimized screenshot of the actual bundled Morrow app inside lightweight device chrome. Three product panels show the hourly forecast, five-day forecast, and saved places. The page flows directly from product screenshots to App Store download links. It has no embedded simulator, location picker, or browser-play prompts. The appearance switch changes the page theme and hero screenshot.
 
 On mobile, the hero copy, conversion controls, and phone come first. Feature panels form a swipeable, keyboard-scrollable gallery on narrow screens to keep the page compact. Screens have descriptive alternatives, form fields have labels, the appearance switch is keyboard-operable, and page motion respects Reduced Motion.
 
-### Enable the waitlist or TestFlight
+### App Store link
 
-No waitlist endpoint or TestFlight URL exists yet. Until one is configured, the page shows **Signups open soon**, disables email collection, and provides a **See the app** link to the screenshot gallery. It does not save email locally, claim a successful signup, or send email to an invented backend.
+Both download links lead directly to Morrow’s live App Store listing. The canonical destination is defined in `lib/app-store.ts`, so no runtime configuration, email collection, API key, or database is required.
 
-The privacy policy is available at `/privacy`, linked in the footer and both signup areas. It covers the website, native weather/location requests, local storage, optional alerts, and TestFlight. Before enabling email collection, update its waitlist section with the chosen provider, retention, and unsubscribe/deletion process. See [privacy review notes](docs/privacy-review.md) for the source audit and operator/native-app launch follow-ups.
+The privacy policy is available at `/privacy`, linked in the footer and both download areas. It covers the website, App Store distribution, native weather/location requests, local storage, and optional alerts. See [privacy review notes](docs/privacy-review.md) for the source audit and operator/native-app launch follow-ups.
 
 Preview `/privacy` with `npm run dev`. For a plain Python file-server preview of `dist/client`, open `/privacy.html` directly; [Cloudflare Pages serves that exported file at `/privacy`](https://developers.cloudflare.com/pages/configuration/serving-pages/). Policy links use standard page navigation, so they also work without JavaScript.
-
-Copy `.env.example` to `.env.local` for local preview, or set the following public build-time variables in Cloudflare Pages (set Preview and Production separately as needed), then rebuild:
-
-| Variable                      | Behavior                                                                                                                                                |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_TESTFLIGHT_URL`  | A real `https://testflight.apple.com/join/...` invitation. Enables **Join the iPhone beta** in both conversion areas. Takes priority over the waitlist. |
-| `NEXT_PUBLIC_WAITLIST_ACTION` | A real HTTPS form-provider endpoint. Enables both email forms and **Join the waitlist**.                                                                |
-
-The waitlist uses a native HTML `POST` with `email` and `source=morrow-landing`, navigating to the provider's own confirmation/error page. Choose a provider that accepts those fields and browser form submissions; a JSON-only API will need an adapter outside this static site. Configure confirmation, consent/privacy copy, abuse protection, and any double opt-in at that provider before collecting real addresses. No CORS integration, API key, new runtime, or database is needed in this repository. Never use private credentials in `NEXT_PUBLIC_` values.
-
-Blank, malformed, non-HTTPS, or credential-bearing URLs fall back to the pre-launch state. TestFlight URLs must be actual invitation paths on `testflight.apple.com`. A new build is required after changing these variables; this is still a static Pages export.
 
 ### Preview and checks
 
@@ -81,7 +70,7 @@ npm run build
 python3 -m http.server 4173 --directory dist/client
 ```
 
-Check the hero and lower conversion area in three configurations: no variables, a real waitlist endpoint, and a real TestFlight invitation. A configured form should use native email validation and reach the provider's real confirmation page. The **See the app** link should scroll to the screenshot panels, and no iframe or Flutter assets should load while browsing the landing page. Check narrow mobile, tablet, desktop, keyboard focus, and light/dark appearance.
+Check both App Store download links, the **See the app** link to the screenshot panels, and that no iframe or Flutter assets load while browsing the landing page. Check narrow mobile, tablet, desktop, keyboard focus, and light/dark appearance.
 
 ### Visual assets
 
@@ -101,10 +90,10 @@ Use the Flutter version recorded in `public/app-demo/flutter-version.json`. The 
 
 ## Files and attribution
 
-- `app/page.tsx`: resolves public launch destinations at build time.
+- `app/page.tsx`: renders the landing page.
 - `components/morrow-landing.tsx`: responsive page, screenshot gallery, and appearance state.
-- `components/beta-signup.tsx`: shared hero/footer conversion UI and native POST form.
-- `lib/beta-config.ts`: destination validation; covered by `tests/beta-config.test.mjs`.
+- `components/app-store-link.tsx`: shared hero/footer App Store download link.
+- `lib/app-store.ts`: Morrow’s canonical App Store destination; covered by `tests/app-store.test.mjs`.
 - `components/product-screen.tsx`: device chrome around the real app capture.
 - `public/screenshots`: product captures; `public/app-demo`: compiled Flutter release and provenance.
 - `scripts/update-app-demo.sh`: rebuilds the demo from the app repository.
