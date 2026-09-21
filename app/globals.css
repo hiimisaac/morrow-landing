@@ -235,65 +235,21 @@ h1 span {
   gap: 22px;
   margin-top: 30px;
 }
-.beta-signup {
+.app-store-link {
   width: 100%;
   max-width: 480px;
 }
-.signup-form {
-  display: flex;
-  gap: 6px;
-  padding: 5px;
-  border: 1px solid var(--border);
-  background: var(--background);
-  border-radius: 9px;
-}
-.signup-form .signup-input {
-  font-size: 0.875rem;
-  flex: 1;
-  min-width: 0;
-  height: 2.8125rem;
-  padding: 10px 12px;
-  border: 0;
-  background: transparent;
-  color: var(--foreground);
-  box-shadow: none;
-}
-.signup-input::placeholder {
-  color: var(--muted);
-  opacity: 1;
-}
-.signup-form .signup-input:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: -2px;
-}
-.signup-form .signup-input:disabled {
-  opacity: 0.75;
-}
-.signup-form .signup-button {
-  height: 2.8125rem;
-  padding-inline: 17px;
-  border-radius: 6px;
-  background: var(--primary);
-  color: var(--primary-foreground);
-  font-size: 0.8125rem;
-  font-weight: 600;
-}
-.signup-form .signup-button:disabled {
-  color: var(--muted);
-  background: var(--surface);
-  opacity: 1;
-}
-.signup-note {
+.app-store-note {
   margin-top: 11px;
   font-size: 0.75rem;
   line-height: 1.6;
   color: var(--muted);
 }
-.signup-note a {
+.app-store-note a {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.signup-note a:hover {
+.app-store-note a:hover {
   color: var(--foreground);
 }
 .primary-cta {
@@ -593,7 +549,7 @@ h2 {
   color: var(--muted);
   margin-top: 21px;
 }
-.release-section .beta-signup {
+.release-section .app-store-link {
   margin-top: 29px;
 }
 .site-footer {
@@ -752,15 +708,6 @@ h2 {
   .phone-device {
     width: 255px;
   }
-  .signup-form {
-    flex-wrap: wrap;
-  }
-  .signup-form .signup-button {
-    flex-grow: 1;
-  }
-  .signup-form .signup-input {
-    min-width: 140px;
-  }
   .feature-copy {
     padding: 23px 20px;
   }
@@ -884,22 +831,7 @@ h2 {
     margin-top: 22px;
     gap: 14px;
   }
-  .signup-form {
-    flex-wrap: nowrap;
-  }
-  .signup-form .signup-input {
-    min-width: 0;
-    height: 2.625rem;
-    padding-inline: 9px;
-    font-size: 1rem;
-  }
-  .signup-form .signup-button {
-    font-size: 0.75rem;
-    padding-inline: 12px;
-    height: 2.625rem;
-    flex-grow: 0;
-  }
-  .signup-note {
+  .app-store-note {
     font-size: 0.6875rem;
     margin-top: 9px;
   }
@@ -1041,15 +973,6 @@ h2 {
 @media (max-width: 359px) {
   .shell {
     width: calc(100% - 32px);
-  }
-  .signup-form {
-    flex-wrap: wrap;
-  }
-  .signup-form .signup-input {
-    flex-basis: 100%;
-  }
-  .signup-form .signup-button {
-    width: 100%;
   }
 }
 @media (prefers-reduced-motion: reduce) {

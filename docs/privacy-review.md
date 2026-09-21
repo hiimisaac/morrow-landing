@@ -1,7 +1,7 @@
 # Privacy policy: implementation notes
 
 The public policy is at `/privacy` (`app/privacy/page.tsx`), linked from both
-signup areas and the footer. It covers the website and native app separately.
+App Store download areas and the footer. It covers the website and native app separately.
 The operator supplied **privacy@hellomorrow.app** and chose no legal operator
 name yet; the page uses **Morrow** as the public-facing service name. This is a
 draft for operator review in the PR, not a determination of legal compliance.
@@ -28,7 +28,7 @@ React bridge, and city selector have been removed; the original compiled sample
 release remains as a capture source and is not linked or loaded by the page.
 
 The landing source has no analytics SDK, tracking pixels, advertising cookies,
-or active waitlist endpoint. The current live site's HTML was also inspected for
+or email-collection endpoint. The current live site's HTML was also inspected for
 injected analytics scripts; none were found. This is not an audit of private
 Cloudflare, Supabase, mail-provider, or App Store account settings.
 
@@ -38,10 +38,10 @@ Provider references checked September 9, 2026:
 - [Open-Meteo terms and privacy](https://open-meteo.com/en/terms).
 - [National Weather Service privacy](https://www.weather.gov/privacy).
 - [Supabase privacy policy](https://supabase.com/privacy).
-- [Apple TestFlight privacy](https://www.apple.com/legal/privacy/data/en/test-flight/): Apple automatically collects beta usage and crash information and shares it with the developer, even without an in-app analytics SDK.
+- [Apple privacy policy](https://www.apple.com/legal/privacy/): App Store distribution and platform-service processing.
 - [Apple App Review Guidelines, 5.1.1](https://developer.apple.com/app-store/review/guidelines/#privacy): policy accessibility, disclosure, retention, and deletion requirements.
 
-## Before public launch
+## Ongoing operator checks
 
 - Confirm the individual or legal entity operating Morrow and add its identity
   and any contact details required for the jurisdictions where the app is
@@ -50,7 +50,7 @@ Provider references checked September 9, 2026:
 - Review the policy against the actual release build and operational settings,
   including provider locations, log retention, backups, support-email handling,
   and any jurisdiction-specific disclosures or lawful bases. Choose concrete
-  support/beta retention periods if operationally supported. No provider region,
+  support and feedback retention periods if operationally supported. No provider region,
   email vendor, or unverified retention period has been invented here.
 - Confirm the deployed alert poller runs the 30-day delivery cleanup. Establish
   retention and a usable deletion process for the separate Supabase anonymous
@@ -64,11 +64,8 @@ Provider references checked September 9, 2026:
   rounding; the hosted policy correctly allows for precise location. Removing
   a place also leaves possible background/widget cache remnants, so the policy
   avoids promising immediate erasure of every local copy.
-- Before enabling `NEXT_PUBLIC_WAITLIST_ACTION`, update the currently-closed
-  waitlist section with the actual provider, purposes, retention, and
-  unsubscribe/deletion process. The form's privacy link is present in every
-  launch configuration. TestFlight data handling is already described, but the
-  invitation URL still needs to be supplied separately.
+- Keep the App Store privacy label, App Store listing, and public policy aligned
+  with the released app and any future feature changes.
 
 The public policy describes optional alerts conditionally and does not claim
 that the website collects location, that providers keep no logs, or that
