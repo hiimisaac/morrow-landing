@@ -99,28 +99,30 @@ export default function PrivacyPage() {
           <h2 id="weather-title">2. Location and weather</h2>
           <p>
             You can search for a place without granting device location access.
-            Search text is sent to GeoNames. On iPhone, the coordinates of the
-            place you view are sent to Apple WeatherKit through iOS for the
-            forecast and to OpenWeather for air quality, and Apple’s place
-            service is asked once for a saved or searched place’s time zone.
-            Earlier iPhone versions send searches and coordinates to Open-Meteo,
-            and Android test builds use Open-Meteo for the forecast.
+            Search text is sent to GeoNames. The coordinates of the place you
+            view are sent to OpenWeather for air quality and, on iPhone, to
+            Apple WeatherKit for the forecast. Apple’s place service receives a
+            saved or searched place’s coordinates once to find its time zone.
+            Android test builds send coordinates to Open-Meteo for the forecast,
+            and earlier iPhone versions send searches and coordinates to
+            Open-Meteo.
           </p>
           <p>
             If you choose current-location weather and grant permission, Morrow
             reads your device’s location. These coordinates may be precise,
             depending on your device and permission settings. They are used for
-            the forecast as described above and sent to your device’s place-name
-            service to identify the locality. Morrow does not continuously track your
-            movements or build a travel history.
+            the forecast as described above and sent to your device’s
+            place-name service to identify the locality. Morrow does not
+            continuously track your movements or build a travel history.
           </p>
           <p>
             For supported U.S. locations, the app sends the displayed place’s
             coordinates to the National Weather Service to retrieve local alert
-            areas and active alerts while the app is in use. Opening Radar loads
-            NOAA radar images from the National Weather Service and map tiles
-            from Morrow’s Cloudflare storage, which receives the map area you
-            view. These weather requests go directly from your device to the
+            areas and active alerts while the app is in use. Opening Radar sends
+            the map area you view to the National Weather Service’s NOAA map
+            service for radar images and to Morrow’s Cloudflare storage for map
+            tiles, which use OpenStreetMap data (© OpenStreetMap contributors).
+            These weather requests go directly from your device to the
             providers, which also receive ordinary connection information such
             as your IP address.
           </p>
@@ -143,10 +145,10 @@ export default function PrivacyPage() {
             Your operating system controls when background work runs.
           </p>
           <p>
-            With Morrow Plus, your routines, Watches, morning note time and
-            membership status are also stored on your device. iOS schedules the
-            morning note and heads-ups on the device; they do not use a Morrow
-            server or push service.
+            With Morrow Plus, your routines, Watches, morning note time, and
+            membership status also stay on your device. iOS schedules the
+            morning note and heads-ups locally, without a Morrow server or push
+            service.
           </p>
         </section>
 
@@ -184,11 +186,11 @@ export default function PrivacyPage() {
           <h2 id="app-store-title">5. The App Store and contacting us</h2>
           <p>
             Morrow is distributed through the Apple App Store. Apple’s privacy
-            policy governs information it processes for your Apple account,
+            policy governs information it processes for your Apple Account,
             purchases, downloads, and App Store use. Morrow Plus is bought
             through the App Store, which tells the app which purchases are
             active; Morrow does not receive your payment details and needs no
-            account. See{' '}
+            Morrow account. See{' '}
             <a href="https://www.apple.com/legal/privacy/">
               Apple’s privacy policy
             </a>{' '}

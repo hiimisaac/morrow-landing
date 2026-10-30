@@ -31,7 +31,7 @@ export default function TermsPage() {
             Last updated <time dateTime="2026-10-30">October 30, 2026</time>
           </p>
           <p>
-            Morrow is licensed to you under Apple’s{' '}
+            Morrow is provided by Isaac Barham and licensed to you under Apple’s{' '}
             <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">
               Licensed Application End User License Agreement
             </a>{' '}
@@ -49,13 +49,13 @@ export default function TermsPage() {
             </strong>
           </p>
           <p>
-            Forecasts, radar, Your day plans, Watches and notes are guidance,
-            not safety advice. Follow official local weather and emergency
-            instructions. Forecasts on iPhone come from Apple Weather (
+            Forecasts, alerts, radar, routines, Watches, and morning notes are
+            guidance, not safety advice. Follow official local weather and
+            emergency instructions. Forecasts on iPhone come from Apple Weather (
             <a href="https://weatherkit.apple.com/legal-attribution.html">
               data sources
             </a>
-            ), and U.S. alerts and radar from the National Weather Service and
+            ). U.S. alerts and radar come from the National Weather Service and
             NOAA.
           </p>
         </section>
@@ -68,11 +68,10 @@ export default function TermsPage() {
           </p>
           <p>
             Payment is charged to your Apple Account when you confirm the
-            purchase. A subscription renews automatically for the same length
-            and price unless you turn off automatic renewal at least 24 hours
-            before the current period ends, and the renewal is charged within
-            the 24 hours before it ends. Manage or cancel your subscription in
-            your Apple Account settings. If a free trial is offered, any unused
+            purchase. A subscription renews automatically unless you turn off
+            automatic renewal at least 24 hours before the current period ends.
+            Renewal is charged within the 24 hours before it ends. Manage or
+            cancel your subscription in your Apple Account settings. If a free trial is offered, any unused
             part of it ends when you buy a subscription. Apple handles refunds.
           </p>
         </section>
