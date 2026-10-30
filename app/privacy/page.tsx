@@ -44,7 +44,7 @@ export default function PrivacyPage() {
           <p className="eyebrow">A little clarity</p>
           <h1>Privacy policy</h1>
           <p className="privacy-date">
-            Last updated <time dateTime="2026-09-09">September 9, 2026</time>
+            Last updated <time dateTime="2026-10-30">October 30, 2026</time>
           </p>
           <p className="privacy-lead">
             Weather needs a place. It doesn’t need an advertising profile.
@@ -99,24 +99,32 @@ export default function PrivacyPage() {
           <h2 id="weather-title">2. Location and weather</h2>
           <p>
             You can search for a place without granting device location access.
-            Search text is sent to Open-Meteo’s place-search service, which uses
-            GeoNames data. The coordinates of the place you view are sent to
-            Open-Meteo to retrieve weather, air quality, and UV information.
+            Search text is sent to GeoNames. The coordinates of the place you
+            view are sent to OpenWeather for air quality and, on iPhone, to
+            Apple WeatherKit for the forecast. Apple’s place service receives a
+            saved or searched place’s coordinates once to find its time zone.
+            Android test builds send coordinates to Open-Meteo for the forecast,
+            and earlier iPhone versions send searches and coordinates to
+            Open-Meteo.
           </p>
           <p>
             If you choose current-location weather and grant permission, Morrow
             reads your device’s location. These coordinates may be precise,
-            depending on your device and permission settings. They are sent to
-            Open-Meteo for the forecast and to your device’s place-name service
-            to identify the locality. Morrow does not continuously track your
-            movements or build a travel history.
+            depending on your device and permission settings. They are used for
+            the forecast as described above and sent to your device’s
+            place-name service to identify the locality. Morrow does not
+            continuously track your movements or build a travel history.
           </p>
           <p>
             For supported U.S. locations, the app sends the displayed place’s
             coordinates to the National Weather Service to retrieve local alert
-            areas and active alerts while the app is in use. These weather
-            requests go directly from your device to the providers, which also
-            receive ordinary connection information such as your IP address.
+            areas and active alerts while the app is in use. Opening Radar sends
+            the map area you view to the National Weather Service’s NOAA map
+            service for radar images and to Morrow’s Cloudflare storage for map
+            tiles, which use OpenStreetMap data (© OpenStreetMap contributors).
+            These weather requests go directly from your device to the
+            providers, which also receive ordinary connection information such
+            as your IP address.
           </p>
         </section>
 
@@ -135,6 +143,12 @@ export default function PrivacyPage() {
             uses coordinates already saved on the device to request updated
             weather; it does not read a new device location in the background.
             Your operating system controls when background work runs.
+          </p>
+          <p>
+            With Morrow Plus, your routines, Watches, morning note time, and
+            membership status also stay on your device. iOS schedules the
+            morning note and heads-ups locally, without a Morrow server or push
+            service.
           </p>
         </section>
 
@@ -172,8 +186,11 @@ export default function PrivacyPage() {
           <h2 id="app-store-title">5. The App Store and contacting us</h2>
           <p>
             Morrow is distributed through the Apple App Store. Apple’s privacy
-            policy governs information it processes for your Apple account,
-            purchases, downloads, and App Store use. See{' '}
+            policy governs information it processes for your Apple Account,
+            purchases, downloads, and App Store use. Morrow Plus is bought
+            through the App Store, which tells the app which purchases are
+            active; Morrow does not receive your payment details and needs no
+            Morrow account. See{' '}
             <a href="https://www.apple.com/legal/privacy/">
               Apple’s privacy policy
             </a>{' '}
@@ -200,17 +217,25 @@ export default function PrivacyPage() {
           <ul>
             <li>
               <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a>{' '}
-              — website delivery and security.
+              — website delivery and security, and radar map tiles.
             </li>
             <li>
-              <a href="https://open-meteo.com/en/terms">Open-Meteo</a> — place
-              searches, weather, and air quality.
+              <a href="https://openweather.co.uk/privacy-policy">OpenWeather</a>{' '}
+              — air quality.
+            </li>
+            <li>
+              <a href="https://www.geonames.org/about.html">GeoNames</a> — place
+              searches.
+            </li>
+            <li>
+              <a href="https://open-meteo.com/en/terms">Open-Meteo</a> — weather
+              in earlier iPhone versions and Android test builds.
             </li>
             <li>
               <a href="https://www.weather.gov/privacy">
                 National Weather Service
               </a>{' '}
-              — U.S. alert areas and weather alerts.
+              — U.S. alert areas, weather alerts, and radar images.
             </li>
             <li>
               <a href="https://supabase.com/privacy">Supabase</a> — optional
@@ -218,7 +243,8 @@ export default function PrivacyPage() {
             </li>
             <li>
               <a href="https://www.apple.com/legal/privacy/">Apple</a> — iPhone
-              platform services, App Store distribution, and push delivery. Other device
+              platform services, WeatherKit forecasts, App Store distribution
+              and purchases, and push delivery. Other device
               providers’ policies apply to their location and backup services.
             </li>
           </ul>
@@ -320,6 +346,7 @@ export default function PrivacyPage() {
         <span>© 2026 Morrow. A fresh outlook.</span>
         <div className="footer-links">
           <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
           <a href="mailto:privacy@hellomorrow.app">Privacy questions</a>
           <a href="/">Back to Morrow</a>
         </div>
