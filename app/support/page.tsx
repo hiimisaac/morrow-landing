@@ -96,6 +96,7 @@ export default function SupportPage() {
         <span>© 2026 Morrow. A fresh outlook.</span>
         <div className="footer-links">
           <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
           <a href="/">Back to Morrow</a>
         </div>
       </footer>

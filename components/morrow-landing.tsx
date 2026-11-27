@@ -205,6 +205,7 @@ export function MorrowLanding() {
         <div className="footer-links">
           <a href="/support">Support</a>
           <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
           <a href="/licenses/Meteocons.txt">Weather artwork</a>
           <a href="/licenses/Phosphor.txt">Icons</a>
           <a href="#main" aria-label="Back to top">
